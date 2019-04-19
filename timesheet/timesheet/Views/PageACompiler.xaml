@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="timesheet.Views.PageACompiler" Title="TIMESHEETS VIEWER">
+    <StackLayout Margin="20" VerticalOptions="StartAndExpand">
+        <Label Text="Date" />
+        <DatePicker Format="D" BindingContext="Date" />
+        <Label Text="Notes" />
+        <Editor Text="{Binding Description}" HeightRequest="150" />
+        <Label Text="Confirmation Status" />
+        <Switch IsToggled="{Binding Status}" />
+        <Label Text="Refused Status" />
+        <Switch IsToggled="{Binding Status}" />
+        <Button Text="Save" Clicked="OnSaveClicked" />
+        <Button Text="Delete" Clicked="OnDeleteClicked" />
+        <Button Text="Cancel" Clicked="OnCancelClicked" />
+    </StackLayout>
+</ContentPage>

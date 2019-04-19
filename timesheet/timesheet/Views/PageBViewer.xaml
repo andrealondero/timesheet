@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="timesheet.Views.PageBViewer" Title="TIMESHEETS VIEWER">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Clicked="OnItemAdded">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android, UWP" Value="plus.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <!--ContentPage.Content>
+    <StackLayout Margin="20,35,20,20">
+        <Label Text="SELECTIONS" 
+               FontAttributes="Bold" 
+               HorizontalOptions="Center" />
+        <Picker x:Name="picker" 
+                Title="Select timesheet status"
+                TitleColor="Red">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>CONFERMATO</x:String>
+                    <x:String>RIFIUTATO</x:String>
+                    <x:String>IN SOSPESO</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+    </StackLayout>
+    </-->
+
+    <ListView x:Name="listView" Margin="20" ItemSelected="OnListItemSelected">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Margin="20,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Label Text="{Binding Date}" VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
+                        <Label Text="{Binding Desrciption}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
+                        <Label Text="{Binding Hours}" VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
+                        <Image Source="check.png" HorizontalOptions="End" IsVisible="{Binding Status}" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+    
+</ContentPage>
