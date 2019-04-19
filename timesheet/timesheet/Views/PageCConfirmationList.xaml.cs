@@ -1,13 +1,14 @@
-﻿using System;
-using timesheet.Models;
+﻿using timesheet.Models;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace timesheet.Views
 {
-    public partial class PageBViewer : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class PageCConfirmationList : ContentPage
     {
 
-        public PageBViewer()
+        public PageCConfirmationList()
         {
             InitializeComponent();
         }
@@ -21,21 +22,13 @@ namespace timesheet.Views
             listView.ItemsSource = await App.Database.GetItemsAsync();
         }
 
-        async void OnItemAdded(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new PageACompiler
-            {
-                BindingContext = new TsItems()
-            });
-        }
-
         async void OnListItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             //((App)App.Current).ResumeAtTodoId = (e.SelectedItem as TsItems).ID;
             //Debug.WriteLine("setting ResumeAtTodoId = " + (e.SelectedItem as TsItems).ID);
             if (e.SelectedItem != null)
             {
-                await Navigation.PushAsync(new PageACompiler
+                await Navigation.PushAsync(new PageDConfirmation
                 {
                     BindingContext = e.SelectedItem as TsItems
                 });

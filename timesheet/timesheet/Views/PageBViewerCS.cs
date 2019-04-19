@@ -3,13 +3,14 @@ using Xamarin.Forms;
 
 namespace timesheet.Views
 {
-    public class PageBList : ContentPage
+    public class PageBViewerCS : ContentPage
+
     {
         ListView listView;
 
-        public PageBList()
+        public PageBViewerCS()
         {
-            Title = "ItemsView";
+            Title = "TS";
 
             var toolbarItem = new ToolbarItem
             {
@@ -18,11 +19,13 @@ namespace timesheet.Views
             };
             toolbarItem.Clicked += async (sender, e) =>
             {
-                await Navigation.PushAsync(new PageACompiler
+
+                await Navigation.PushAsync(new PageACompilerCS
                 {
                     BindingContext = new TsItems()
                 });
             };
+
             ToolbarItems.Add(toolbarItem);
 
             listView = new ListView
@@ -30,33 +33,34 @@ namespace timesheet.Views
                 Margin = new Thickness(20),
                 ItemTemplate = new DataTemplate(() =>
                 {
+
                     var label = new Label
                     {
                         VerticalTextAlignment = TextAlignment.Center,
-                        HorizontalOptions = LayoutOptions.StartAndExpand
+                        HorizontalOptions = LayoutOptions.Start
                     };
                     label.SetBinding(Label.TextProperty, "Date");
 
                     var label1 = new Label
                     {
                         VerticalTextAlignment = TextAlignment.Center,
-                        HorizontalOptions = LayoutOptions.StartAndExpand
+                        HorizontalOptions = LayoutOptions.Center
                     };
-                    label.SetBinding(Label.TextProperty, "Description");
-
-                    var label2 = new Label
-                    {
-                        VerticalTextAlignment = TextAlignment.Center,
-                        HorizontalOptions = LayoutOptions.StartAndExpand
-                    };
-                    label.SetBinding(Label.TextProperty, "Hours");
+                    label1.SetBinding(Label.TextProperty, "Description");
 
                     var tick = new Image
                     {
                         Source = ImageSource.FromFile("check.png"),
                         HorizontalOptions = LayoutOptions.End
                     };
-                    tick.SetBinding(VisualElement.IsVisibleProperty, "Confermato");
+                    tick.SetBinding(VisualElement.IsVisibleProperty, "ConfirmedStatus");
+
+                    var tick1 = new Image
+                    {
+                        Source = ImageSource.FromFile("check.png"),
+                        HorizontalOptions = LayoutOptions.End
+                    };
+                    tick1.SetBinding(VisualElement.IsVisibleProperty, "RefusedStatus");
 
                     var stackLayout = new StackLayout
                     {
@@ -65,15 +69,17 @@ namespace timesheet.Views
                         HorizontalOptions = LayoutOptions.FillAndExpand,
                         Children = { label, tick }
                     };
-
                     return new ViewCell { View = stackLayout };
                 })
             };
+
             listView.ItemSelected += async (sender, e) =>
             {
+                //((App)App.Current).ResumeAtTodoId = (e.SelectedItem as TsItems).ID;
+                //Debug.WriteLine("setting ResumeAtTodoId = " + (e.SelectedItem as TsItems).ID);
                 if (e.SelectedItem != null)
                 {
-                    await Navigation.PushAsync(new PageACompiler
+                    await Navigation.PushAsync(new PageACompilerCS
                     {
                         BindingContext = e.SelectedItem as TsItems
                     });
@@ -88,7 +94,7 @@ namespace timesheet.Views
             base.OnAppearing();
 
             // Reset the 'resume' id, since we just want to re-start here
-            ((App)App.Current).ResumeAtTimesheetId = -1;
+            ((App)App.Current).ResumeAtTodoId = -1;
             listView.ItemsSource = await App.Database.GetItemsAsync();
         }
     }

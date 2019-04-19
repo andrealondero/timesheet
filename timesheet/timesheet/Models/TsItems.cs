@@ -1,51 +1,27 @@
 ﻿using SQLite;
 using System;
-using Xamarin.Forms;
 
 namespace timesheet.Models
 {
-    public class TsItems : BindableObject
+    public class TsItems
+
     {
-        [PrimaryKey, Unique, AutoIncrement, NotNull]
+
+        [PrimaryKey, AutoIncrement]
+
         public int ID { get; set; }
 
-        public string UserID { get; set; }
-
-        public int Status
-        {
-            get
-            {
-                return Status;
-            }
-            set
-            {
-                if (value == Status)
-                    return;
-                Status = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string Description { get; set; }
-
-        public DateTime Date { get; set; }
+        public int User_ID { get; set; }
 
         public int Hours { get; set; }
 
-        public DateTime CR_date { get; set; }
+        public string Description { get; set; }
 
-        public DateTime MOD_date { get; set; }
+        public bool ConfirmedStatus { get; set; }
 
-        string CheckUserStatus(int status)
-        {
-            var statoTS = "";
-            switch (status)
-            {
-                case 0: statoTS = "confirmed"; break;
-                case 1: statoTS = "refused"; break;
-                case 2: statoTS = "suspended"; break;
-            }
-            return statoTS;
-        }
+        public bool RefusedStatus { get; set; }
+
+        public DateTime Date { get; set; }
+
     }
 }

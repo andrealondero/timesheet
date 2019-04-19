@@ -1,20 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using timesheet.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace timesheet.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DashboardPage : ContentPage
+
+    public partial class DashBoardPage : ContentPage
+
     {
-        public DashboardPage()
+        public DashBoardPage()
+
         {
             InitializeComponent();
+        }
+
+        async void OnItemAdded(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PageACompiler
+            {
+                BindingContext = new TsItems()
+            });
+        }
+
+        async void ViewerButton(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PageBViewer());
+        }
+
+        async void ConfirmationButton(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PageCConfirmationList());
         }
     }
 }

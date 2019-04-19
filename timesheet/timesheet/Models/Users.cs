@@ -4,46 +4,27 @@ using Xamarin.Forms;
 
 namespace timesheet.Models
 {
-    public class Users : BindableObject
+    public class Users
+
     {
-            [PrimaryKey, Unique, AutoIncrement, NotNull]
-            public int ID { get; set; }
 
-            public int Type
+        [PrimaryKey, AutoIncrement]
 
-            {
-                get
-                {
-                    return Type;
-                }
-                set
-                {
-                    if (value == Type)
-                        return;
-                    Type = value;
-                    OnPropertyChanged();
-                }
-            }
+        public int ID { get; set; }
 
-            public string Mail { get; set; }
+        public bool Type { get; set; }
 
-            public string Password { get; set; }
+        [Unique]
 
-            public DateTime CR_date { get; set; }
+        public string Mail { get; set; }
 
-            public DateTime MOD_date { get; set; }
+        [Unique]
 
+        public string Password { get; set; }
 
-            string CheckUserType(int type)
+        public DateTime MD_Date { get; set; }
 
-            {
-                var tipoUtente = "";
-                switch (type)
-                {
-                    case 0: tipoUtente = "dipendente"; break;
-                    case 1: tipoUtente = "supervisore"; break;
-                }
-                return tipoUtente;
-            }
+        public DateTime CR_Date { get; set; }
+
     }
 }

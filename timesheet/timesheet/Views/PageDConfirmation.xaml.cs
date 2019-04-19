@@ -2,12 +2,15 @@
 using timesheet.Helpers;
 using timesheet.Models;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace timesheet.Views
 {
-    public partial class PageACompiler : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class PageDConfirmation : ContentPage
     {
-        public PageACompiler()
+
+        public PageDConfirmation()
         {
             InitializeComponent();
         }
@@ -16,11 +19,7 @@ namespace timesheet.Views
         {
             var todoItem = (TsItems)BindingContext;
             await App.Database.SaveItemAsync(todoItem);
-            await Navigation.PushAsync(new PageBViewer
-
-            {
-                BindingContext = new TsItems()
-            });
+            await Navigation.PopAsync();
         }
 
         async void OnDeleteClicked(object sender, EventArgs e)
