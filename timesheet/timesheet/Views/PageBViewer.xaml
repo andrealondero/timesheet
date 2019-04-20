@@ -11,18 +11,33 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <ListView x:Name="listView" Margin="20" ItemSelected="OnListItemSelected">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <StackLayout Margin="20,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <Label Text="{Binding Date}" VerticalTextAlignment="Center" HorizontalOptions="Start" />
-                        <Label Text="{Binding Description}" MaxLines="1" VerticalTextAlignment="Center" HorizontalOptions="Center" />
-                        <Image Source="check.png" HorizontalOptions="End" IsVisible="{Binding ConfirmedStatus}" />
-                        <Image Source="check.png" HorizontalOptions="End" IsVisible="{Binding RefusedStatus}" />
-                    </StackLayout>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+    <StackLayout Orientation="Vertical">
+        <Picker SelectedIndexChanged="OnPickerSelectedIndexChanged" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+            <Picker.Items>
+                <x:String>CONFIRMED</x:String>
+                <x:String>REFUSED</x:String>
+                <x:String>SUSPENDED</x:String>
+            </Picker.Items>
+        </Picker>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="YOUR FILTER CHOISE:" />
+            <Label x:Name="pickerstatusLabel" />
+        </StackLayout>
+
+        <ListView x:Name="listView" Margin="20" ItemSelected="OnListItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Margin="20,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Label Text="{Binding Date}" VerticalTextAlignment="Center" HorizontalOptions="Start" />
+                            <Label Text="{Binding Description}" MaxLines="1" VerticalTextAlignment="Center" HorizontalOptions="Center" />
+                            <Image Source="check.png" HorizontalOptions="End" IsVisible="{Binding ConfirmedStatus}" />
+                            <Image Source="check.png" HorizontalOptions="End" IsVisible="{Binding RefusedStatus}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+    </StackLayout>
 </ContentPage>

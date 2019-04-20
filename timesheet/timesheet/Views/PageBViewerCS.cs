@@ -28,6 +28,26 @@ namespace timesheet.Views
 
             ToolbarItems.Add(toolbarItem);
 
+            var pickerstatusLabel = new Label();
+            var picker = new Picker { Title = "Select status", TitleColor = Color.DarkRed };
+            picker.Items.Add("CONFIRMED");
+            picker.Items.Add("REFUSED");
+            picker.Items.Add("SUSPENDED");
+            picker.SelectedIndexChanged += (sender, e) =>
+            {
+                int selectedIndex = picker.SelectedIndex;
+                if (selectedIndex != -1)
+                {
+                    pickerstatusLabel.Text = picker.Items[selectedIndex];
+                }
+            };
+
+            var contentStacklayout = new StackLayout
+            {
+                Orientation = StackOrientation.Vertical,
+                Children = { pickerstatusLabel, picker }
+            };
+
             listView = new ListView
             {
                 Margin = new Thickness(20),
@@ -67,7 +87,7 @@ namespace timesheet.Views
                         Margin = new Thickness(20, 0, 0, 0),
                         Orientation = StackOrientation.Horizontal,
                         HorizontalOptions = LayoutOptions.FillAndExpand,
-                        Children = { label, tick }
+                        Children = { label, label1, tick, tick1 }
                     };
                     return new ViewCell { View = stackLayout };
                 })
@@ -75,8 +95,6 @@ namespace timesheet.Views
 
             listView.ItemSelected += async (sender, e) =>
             {
-                //((App)App.Current).ResumeAtTodoId = (e.SelectedItem as TsItems).ID;
-                //Debug.WriteLine("setting ResumeAtTodoId = " + (e.SelectedItem as TsItems).ID);
                 if (e.SelectedItem != null)
                 {
                     await Navigation.PushAsync(new PageACompilerCS
@@ -85,7 +103,6 @@ namespace timesheet.Views
                     });
                 }
             };
-
             Content = listView;
         }
 

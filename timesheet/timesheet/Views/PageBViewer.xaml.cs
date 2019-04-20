@@ -31,14 +31,23 @@ namespace timesheet.Views
 
         async void OnListItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            //((App)App.Current).ResumeAtTodoId = (e.SelectedItem as TsItems).ID;
-            //Debug.WriteLine("setting ResumeAtTodoId = " + (e.SelectedItem as TsItems).ID);
             if (e.SelectedItem != null)
             {
                 await Navigation.PushAsync(new PageACompiler
                 {
                     BindingContext = e.SelectedItem as TsItems
                 });
+            }
+        }
+
+        void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var picker = (Picker)sender;
+            int selectedIndex = picker.SelectedIndex;
+
+            if (selectedIndex != -1)
+            {
+                pickerstatusLabel.Text = picker.Items[selectedIndex];
             }
         }
     }
