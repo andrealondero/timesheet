@@ -13,6 +13,7 @@ namespace timesheet
     public class App : Application
 
     {
+        public static bool IsUserLoggedIn { get; set; }
         static DBHelper database;
 
         public App()
@@ -25,11 +26,18 @@ namespace timesheet
             Resources.Add("primaryRed", Color.FromHex("FF5657"));
             Resources.Add("primaryDarkRed", Color.FromHex("910C07"));
 
-            var nav = new NavigationPage(new DashBoardPage());
+            var nav = new NavigationPage(new HomePageLogin());
             nav.BarBackgroundColor = (Color)App.Current.Resources["primaryDarkRed"];
             nav.BarTextColor = Color.White;
 
-            MainPage = nav;
+            if (!IsUserLoggedIn)
+            {
+                MainPage = nav;
+            }
+            else
+            {
+                MainPage = new NavigationPage(new HomePageLogin());
+            }
         }
 
         public static DBHelper Database

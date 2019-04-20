@@ -14,8 +14,8 @@ namespace timesheet.Views
 
         async void OnSaveClicked(object sender, EventArgs e)
         {
-            var todoItem = (TsItems)BindingContext;
-            await App.Database.SaveItemAsync(todoItem);
+            var item = (TsItems)BindingContext;
+            await App.Database.SaveItemAsync(item);
             await Navigation.PushAsync(new PageBViewer
 
             {
@@ -25,8 +25,8 @@ namespace timesheet.Views
 
         async void OnDeleteClicked(object sender, EventArgs e)
         {
-            var todoItem = (TsItems)BindingContext;
-            await App.Database.DeleteItemAsync(todoItem);
+            var item = (TsItems)BindingContext;
+            await App.Database.DeleteItemAsync(item);
             await Navigation.PopAsync();
         }
 
@@ -37,8 +37,8 @@ namespace timesheet.Views
 
         void OnSpeakClicked(object sender, EventArgs e)
         {
-            var todoItem = (TsItems)BindingContext;
-            DependencyService.Get<ITextToSpeech>().Speak(todoItem.Hours + " " + todoItem.Description);
+            var item = (TsItems)BindingContext;
+            DependencyService.Get<ITextToSpeech>().Speak(item.Hours + " " + item.Description);
         }
     }
 }
