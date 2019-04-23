@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="timesheet.Views.PageCConfirmationList">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="timesheet.Views.PageCConfirmationList" Title="CONFIRMATION">
 
     <ListView x:Name="listView" Margin="20" ItemSelected="OnListItemSelected">
         <ListView.ItemTemplate>
@@ -9,7 +9,7 @@
                         <Label Text="{Binding Date}" VerticalTextAlignment="Center" HorizontalOptions="Start" />
                         <Label Text="{Binding Description}" MaxLines="1" VerticalTextAlignment="Center" HorizontalOptions="Center" />
                         <Image Source="check.png" HorizontalOptions="End" IsVisible="{Binding ConfirmedStatus}" />
-                        <Image Source="check.png" HorizontalOptions="End" IsVisible="{Binding RefusedStatus}" />
+                        <Image Source="check_red.png" HorizontalOptions="End" IsVisible="{Binding RefusedStatus}" />
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>

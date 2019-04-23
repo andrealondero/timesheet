@@ -16,6 +16,13 @@ namespace timesheet.Views
             InitializeComponent();
         }
 
+        async void OnLogoutButtonClicked(object sender, EventArgs e)
+        {
+            App.IsUserLoggedIn = false;
+            Navigation.InsertPageBefore(new HomePageLogin(), this);
+            await Navigation.PopAsync();
+        }
+
         async void OnItemAdded(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PageACompiler
@@ -26,12 +33,37 @@ namespace timesheet.Views
 
         async void ViewerButton(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new PageBViewer());
+            await Navigation.PushAsync(new PageBViewer
+            {
+                BindingContext = new Users()
+            });
         }
 
         async void ConfirmationButton(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new PageCConfirmationList());
+            var superuser = new Users
+            {
+                Mail = "paolo.loconsole",
+                Password = "supervisore"
+            };
+
+            var issuperuser = SuperuserLogged(superuser);
+            if (issuperuser)
+            {
+                await Navigation.PushAsync(new PageCConfirmationList
+                {
+                    BindingContext = new Users()
+                });
+            }
+            else
+            {
+                await DisplayAlert("You can't access this page", $"Maybe you're not a superuser", "OK");
+            }
+        }
+
+        bool SuperuserLogged(Users superuser)
+        {
+            return superuser.Mail == "paolo.loconsole" && superuser.Password == "supervisore";
         }
     }
 }

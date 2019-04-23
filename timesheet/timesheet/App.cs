@@ -36,7 +36,7 @@ namespace timesheet
             }
             else
             {
-                MainPage = new NavigationPage(new HomePageLogin());
+                MainPage = new NavigationPage(new DashBoardPage());
             }
         }
 

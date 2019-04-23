@@ -21,12 +21,25 @@ namespace timesheet.Views
                 Password = passwordEntry.Text
             };
 
-            var isValid = AreCredentialsCorrect(user);
+            var isValid = AreUserCredentialsCorrect(user);
             if (isValid)
             {
-                string name = usernameEntry.Text;
                 App.IsUserLoggedIn = true;
-                await DisplayAlert("Your Logged as", $"name", "OK");
+                await DisplayAlert("Your Logged as", $"user", "OK");
+                Navigation.InsertPageBefore(new DashBoardPage(), this);
+                await Navigation.PopAsync();
+            }
+            else
+            {
+                messageLabel.Text = "Login failed";
+                passwordEntry.Text = string.Empty;
+            }
+
+            var isSuperuser = AreSuperuserCredentialsCorrect(user);
+            if (isSuperuser)
+            {
+                App.IsUserLoggedIn = true;
+                await DisplayAlert("Your Logged as", $"superuser", "OK");
                 Navigation.InsertPageBefore(new DashBoardPage(), this);
                 await Navigation.PopAsync();
             }
@@ -37,9 +50,14 @@ namespace timesheet.Views
             }
         }
 
-        bool AreCredentialsCorrect(Users user)
+        bool AreUserCredentialsCorrect(Users user)
         {
             return user.Mail == "andrea.londero" && user.Password == "aryonsolutions";
+        }
+
+        bool AreSuperuserCredentialsCorrect(Users user)
+        {
+            return user.Mail == "paolo.loconsole" && user.Password == "supervisore";
         }
     }
 }
