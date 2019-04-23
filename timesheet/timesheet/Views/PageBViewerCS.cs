@@ -25,7 +25,6 @@ namespace timesheet.Views
                     BindingContext = new TsItems()
                 });
             };
-
             ToolbarItems.Add(toolbarItem);
 
             var pickerstatusLabel = new Label();
@@ -33,6 +32,7 @@ namespace timesheet.Views
             picker.Items.Add("CONFIRMED");
             picker.Items.Add("REFUSED");
             picker.Items.Add("SUSPENDED");
+            picker.Items.Add("ALL");
             picker.SelectedIndexChanged += (sender, e) =>
             {
                 int selectedIndex = picker.SelectedIndex;
@@ -77,7 +77,7 @@ namespace timesheet.Views
 
                     var tick1 = new Image
                     {
-                        Source = ImageSource.FromFile("check.png"),
+                        Source = ImageSource.FromFile("check_red.png"),
                         HorizontalOptions = LayoutOptions.End
                     };
                     tick1.SetBinding(VisualElement.IsVisibleProperty, "RefusedStatus");
@@ -112,7 +112,7 @@ namespace timesheet.Views
 
             // Reset the 'resume' id, since we just want to re-start here
             ((App)App.Current).ResumeAtTodoId = -1;
-            listView.ItemsSource = await App.Database.GetItemsAsync();
+            listView.ItemsSource = await App.Database.GetAllItemsAsync();
         }
     }
 }

@@ -192,4 +192,13 @@
   <ItemGroup>
     <BundleResource Include="Resources\Icon-Spotlight-40%402x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\check%402x_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\check%403x_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\check_red.png" />
+  </ItemGroup>
 </Project>

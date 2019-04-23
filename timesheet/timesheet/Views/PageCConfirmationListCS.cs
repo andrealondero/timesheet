@@ -79,7 +79,7 @@ namespace timesheet.Views
 
             // Reset the 'resume' id, since we just want to re-start here
             ((App)App.Current).ResumeAtTodoId = -1;
-            listView.ItemsSource = await App.Database.GetItemsAsync();
+            listView.ItemsSource = await App.Database.GetAllItemsAsync();
         }
     }
 }

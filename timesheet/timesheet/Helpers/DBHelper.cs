@@ -17,20 +17,25 @@ namespace timesheet.Helpers
             database.CreateTableAsync<Users>().Wait();
         }
 
-        public Task<List<TsItems>> GetItemsAsync()
+        public Task<List<TsItems>> GetAllItemsAsync()
 
         {
             return database.Table<TsItems>().ToListAsync();
         }
+        public Task<List<TsItems>> GetItemsSuspendedAsync()
+
+        {
+            return database.QueryAsync<TsItems>("SELECT * FROM [TsItems] WHERE [ConfirmedStatus] = 0 AND [RefusedStatus] = 0");
+        }
         public Task<List<TsItems>> GetItemsConfirmedAsync()
 
         {
-            return database.QueryAsync<TsItems>("SELECT * FROM [TsItems] WHERE [ConfirmedStatus] = 0");
+            return database.QueryAsync<TsItems>("SELECT * FROM [TsItems] WHERE [ConfirmedStatus] = 1");
         }
         public Task<List<TsItems>> GetItemsRefusedAsync()
 
         {
-            return database.QueryAsync<TsItems>("SELECT * FROM [TsItems] WHERE [RefusedStatus] = 0");
+            return database.QueryAsync<TsItems>("SELECT * FROM [TsItems] WHERE [RefusedStatus] = 1");
         }
         public Task<TsItems> GetItemAsync(int id)
 

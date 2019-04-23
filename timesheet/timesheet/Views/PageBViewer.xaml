@@ -17,6 +17,7 @@
                 <x:String>CONFIRMED</x:String>
                 <x:String>REFUSED</x:String>
                 <x:String>SUSPENDED</x:String>
+                <x:String>ALL</x:String>
             </Picker.Items>
         </Picker>
         <StackLayout Orientation="Horizontal">
@@ -30,9 +31,9 @@
                     <ViewCell>
                         <StackLayout Margin="20,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                             <Label Text="{Binding Date}" VerticalTextAlignment="Center" HorizontalOptions="Start" />
-                            <Label Text="{Binding Description}" MaxLines="1" VerticalTextAlignment="Center" HorizontalOptions="Center" />
-                            <Image Source="check.png" HorizontalOptions="End" IsVisible="{Binding ConfirmedStatus}" />
-                            <Image Source="check.png" HorizontalOptions="End" IsVisible="{Binding RefusedStatus}" />
+                            <Label Text="{Binding Description}" MaxLines="1" VerticalTextAlignment="Center" HorizontalOptions="Start" />
+                            <Image Source="check.png" HorizontalOptions="Center" IsVisible="{Binding ConfirmedStatus}" />
+                            <Image Source="check_red.png" HorizontalOptions="End" IsVisible="{Binding RefusedStatus}" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
