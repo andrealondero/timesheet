@@ -5,10 +5,10 @@
         <ToolbarItem Text="Logout" Clicked="OnLogoutButtonClicked" />
     </ContentPage.ToolbarItems>
     
-    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
-        <Button Text="TIMESHEET COMPILER" Clicked="OnItemAdded" />
-        <Button Text="TIMESHEET VIEWER" Clicked="ViewerButton" />
-        <Button Text="TIMSHEET CONFIRMATION" Clicked="ConfirmationButton" />
+    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Margin="80,20,80,20">
+        <Button Text="TIMESHEET COMPILER" Clicked="OnItemAdded" BackgroundColor="#2D8183" TextColor="White" Margin="0,0,0,20" />
+        <Button Text="TIMESHEET VIEWER" Clicked="ViewerButton" BackgroundColor="#2D8183" TextColor="White" Margin="0,0,0,20" />
+        <Button Text="TIMSHEET CONFIRMATION" Clicked="ConfirmationButton" BackgroundColor="#2D8183" TextColor="White" />
     </StackLayout>
 
 </ContentPage>

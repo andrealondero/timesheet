@@ -10,10 +10,13 @@ namespace timesheet.Views
     public partial class DashBoardPage : ContentPage
 
     {
+        public static bool GetuserAsync { get; set; }
+        public static bool GetsupeuserAsync { get; set; }
         public DashBoardPage()
 
         {
             InitializeComponent();
+            BindingContext = new HomePageLogin();
         }
 
         async void OnLogoutButtonClicked(object sender, EventArgs e)
@@ -25,10 +28,17 @@ namespace timesheet.Views
 
         async void OnItemAdded(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new PageACompiler
+            if (!GetuserAsync)
             {
-                BindingContext = new TsItems()
-            });
+                await Navigation.PushAsync(new PageACompiler
+                {
+                    BindingContext = new TsItems()
+                });
+            }
+            else
+            {
+                await DisplayAlert("Your Logged as", $"superuser", "OK");
+            }
         }
 
         async void ViewerButton(object sender, EventArgs e)

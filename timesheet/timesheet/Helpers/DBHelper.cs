@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using timesheet.Models;
+using Xamarin.Forms;
 
 namespace timesheet.Helpers
 {
     public class DBHelper
-
     {
         readonly SQLiteAsyncConnection database;
         public DBHelper(string dbPath)
 
         {
+            database = DependencyService.Get<ISQLite>().GetConnection();
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<TsItems>().Wait();
             database.CreateTableAsync<Users>().Wait();

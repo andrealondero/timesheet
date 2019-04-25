@@ -4,6 +4,6 @@ namespace timesheet.Helpers
 {
     public interface ISQLite
     {
-        SQLiteConnection GetConnection();
+        SQLiteAsyncConnection GetConnection();
     }
 }
