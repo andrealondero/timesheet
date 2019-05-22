@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="timesheet.Views.ConfirmationPage" Title="CONFIRMATION">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Text="SAVE" 
+            Clicked="OnSave">
+        </ToolbarItem>
+        <ToolbarItem 
+            Text="DELETE" 
+            Clicked="OnDelete">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+    <StackLayout Margin="20" VerticalOptions="StartAndExpand">
+        <Label Text="Date" FontSize="Small"/>
+        <Label Text="{Binding Date}" MaxLines="1" VerticalOptions="Center" FontSize="Large"/>
+        <Label Text="Worked hours" FontSize="Small" />
+        <Label Text="{Binding Hours}" FontSize="Large"/>
+        <Label Text="Description" FontSize="Small" />
+        <Label Text="{Binding Description}" FontSize="Large"/>
+        
+        <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="45"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Text="Confirm" />
+            <Switch x:Name="confirmedSwitch" Grid.Column="0" Grid.Row="1" IsToggled="{Binding ConfirmedStatus}" Toggled="ConfirmedSwitch_Toggled" HorizontalOptions="Start" />
+            <Label Grid.Column="1" Grid.Row="0" Text="Refuse" HorizontalOptions="End"/>
+            <Switch x:Name="refusedSwitch" Grid.Column="1" Grid.Row="1" IsToggled="{Binding RefusedStatus}" Toggled="RefusedSwitch_Toggled" />
+            </Grid>
+
+        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" Margin="10,30,10,0">
+            <Button Text="Cancel" Clicked="OnCancelClicked" HorizontalOptions="StartAndExpand" BackgroundColor="#2D8183" TextColor="White" />
+            <Button Text="Speak" Clicked="OnSpeakClicked" HorizontalOptions="EndAndExpand" BackgroundColor="#2D8183" TextColor="White" />
+        </StackLayout>
+    </StackLayout>
+    </ScrollView>
+
+</ContentPage>
