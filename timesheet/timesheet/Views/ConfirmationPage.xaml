@@ -6,10 +6,6 @@
             Text="SAVE" 
             Clicked="OnSave">
         </ToolbarItem>
-        <ToolbarItem 
-            Text="DELETE" 
-            Clicked="OnDelete">
-        </ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ScrollView>

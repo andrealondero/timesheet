@@ -47,13 +47,6 @@ namespace timesheet.Views
             await Navigation.PopAsync();
         }
 
-        async void OnDelete(object sender, EventArgs e)
-        {
-            var todoItem = (TsItems)BindingContext;
-            await App.Database.DeleteItemAsync(todoItem);
-            await Navigation.PopAsync();
-        }
-
         async void OnCancelClicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();

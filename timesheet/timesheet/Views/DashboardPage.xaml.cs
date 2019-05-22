@@ -30,7 +30,7 @@ namespace timesheet.Views
         {
             if (!GetuserAsync)
             {
-                await Navigation.PushAsync(new PageACompiler
+                await Navigation.PushAsync(new AddItemPage
                 {
                     BindingContext = new TsItems()
                 });
@@ -43,7 +43,7 @@ namespace timesheet.Views
 
         async void ViewerButton(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new PageBViewer
+            await Navigation.PushAsync(new ItemListPage
             {
                 BindingContext = new Users()
             });
@@ -60,7 +60,7 @@ namespace timesheet.Views
             var issuperuser = SuperuserLogged(superuser);
             if (issuperuser)
             {
-                await Navigation.PushAsync(new PageCConfirmationList
+                await Navigation.PushAsync(new ConfirmationListPage
                 {
                     BindingContext = new Users()
                 });

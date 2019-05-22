@@ -26,7 +26,7 @@ namespace timesheet
             Resources.Add("primaryRed", Color.FromHex("FF5657"));
             Resources.Add("primaryDarkRed", Color.FromHex("910C07"));
 
-            var nav = new NavigationPage(new HomePageLogin());
+            var nav = new NavigationPage(new DashBoardPage());
             nav.BarBackgroundColor = (Color)App.Current.Resources["primaryDarkRed"];
             nav.BarTextColor = Color.White;
 
