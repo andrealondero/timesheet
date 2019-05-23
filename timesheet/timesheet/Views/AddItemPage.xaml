@@ -10,7 +10,7 @@
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
             <Label Text="Date" FontSize="Medium" />
-            <DatePicker x:Name="datepicker" Date="{Binding Item.Date}" Format="yyyy.MM.dd" HeightRequest="45" FontSize="Small" Margin="0" />
+            <DatePicker x:Name="datepicker" Date="{Binding Item.Date}" Format="yyyy-MM-dd" HeightRequest="45" FontSize="Small" Margin="0" />
             <Label Text="Worked Hours" FontSize="Medium" />
             <Editor x:Name="hourseditor" Text="{Binding Item.Hours}" Placeholder="0" PlaceholderColor="#910C07" HeightRequest="45" FontSize="Small" Margin="0" />
             <Label Text="Description" FontSize="Medium" />

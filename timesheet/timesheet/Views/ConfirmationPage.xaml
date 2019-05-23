@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="timesheet.Views.ConfirmationPage" Title="CONFIRMATION">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="timesheet.Views.ConfirmationPage"
+             Title="CONFIRMATION">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem 
@@ -10,12 +13,12 @@
 
     <ScrollView>
     <StackLayout Margin="20" VerticalOptions="StartAndExpand">
-        <Label Text="Date" FontSize="Small"/>
-        <Label Text="{Binding Date}" MaxLines="1" VerticalOptions="Center" FontSize="Large"/>
-        <Label Text="Worked hours" FontSize="Small" />
-        <Label Text="{Binding Hours}" FontSize="Large"/>
-        <Label Text="Description" FontSize="Small" />
-        <Label Text="{Binding Description}" FontSize="Large"/>
+            <Label Text="Date" FontSize="Small"/>
+            <Label Text="{Binding Date, StringFormat='{0:yyyy-MM-dd}'}" MaxLines="1" VerticalOptions="Center" FontSize="Large"/>
+            <Label Text="Worked hours" FontSize="Small" />
+            <Label Text="{Binding Hours}" FontSize="Large"/>
+            <Label Text="Description" FontSize="Small" />
+            <Label Text="{Binding Description}" FontSize="Large"/>
         
         <Grid>
                 <Grid.RowDefinitions>
