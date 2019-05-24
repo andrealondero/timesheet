@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:sys="clr-namespace:System;assembly=netstandard" x:Class="timesheet.Views.ItemPage" 
+             x:Class="timesheet.Views.ItemPage" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              Title="TIMESHEET DETAIL">
 
     <ContentPage.ToolbarItems>
@@ -15,13 +16,13 @@
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-    <StackLayout Margin="20" VerticalOptions="CenterAndExpand">
-        <Label Text="Date" />
-        <DatePicker x:Name="datePicker" Format="yyyy-MM-dd" Date="{Binding Date}" HeightRequest="45"/>
-        <Label Text="Worked hours" />
-        <Entry x:Name="hoursEntry" Text="{Binding Hours}" Placeholder="0" PlaceholderColor="#910C07" HeightRequest="45" />
-        <Label Text="Description" />
-        <Editor x:Name="descriptionEditor" Text="{Binding Description}" Placeholder="your activities here" HeightRequest="100" MaxLength="120" />
+        <StackLayout Margin="20" VerticalOptions="CenterAndExpand">
+            <Label Text="Date" />
+            <DatePicker x:Name="datePicker" MaximumDate="{x:Static sys:DateTime.Now}" Format="yyyy-MM-dd" Date="{Binding Date, Mode=TwoWay}" HeightRequest="45"/>
+            <Label Text="Worked hours" />
+            <Entry x:Name="hoursEntry" Text="{Binding Hours, Mode=TwoWay}" Placeholder="0" PlaceholderColor="#910C07" HeightRequest="45" />
+            <Label Text="Description" />
+            <Editor x:Name="descriptionEditor" Text="{Binding Description, Mode=TwoWay}" Placeholder="your activities here" HeightRequest="100" MaxLength="120" />
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -39,8 +40,8 @@
             </Grid>
 
         <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" Margin="10,0,10,0">
-            <Button Text="Cancel" Clicked="OnCancelClicked" HorizontalOptions="StartAndExpand" BackgroundColor="#2D8183" TextColor="White" />
-            <Button Text="Speak" Clicked="OnSpeakClicked" HorizontalOptions="EndAndExpand" BackgroundColor="#2D8183" TextColor="White" />
+                <Button Text="Cancel" Clicked="OnCancelClicked" HorizontalOptions="StartAndExpand" BackgroundColor="#2D8183" BorderColor="White" BorderWidth="0.5" BorderRadius="10" TextColor="White" />
+                <Button Text="Speak" Clicked="OnSpeakClicked" HorizontalOptions="EndAndExpand" BackgroundColor="#2D8183" BorderColor="White" BorderWidth="0.5" BorderRadius="10" TextColor="White" />
         </StackLayout>
         
     </StackLayout>

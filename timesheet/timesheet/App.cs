@@ -11,7 +11,6 @@ namespace timesheet
 
 {
     public class App : Application
-
     {
         public static bool IsUserLoggedIn { get; set; }
         static DBHelper database;
@@ -26,18 +25,19 @@ namespace timesheet
             Resources.Add("primaryRed", Color.FromHex("FF5657"));
             Resources.Add("primaryDarkRed", Color.FromHex("910C07"));
 
-            var nav = new NavigationPage(new DashBoardPage());
-            nav.BarBackgroundColor = (Color)App.Current.Resources["primaryDarkRed"];
+            var nav = new NavigationPage(new LoginPage());
+            nav.BarBackgroundColor = (Color)App.Current.Resources["primaryAqua"];
             nav.BarTextColor = Color.White;
 
-            if (!IsUserLoggedIn)
+            /*if (!IsUserLoggedIn)
             {
                 MainPage = nav;
             }
             else
             {
                 MainPage = new NavigationPage(new DashBoardPage());
-            }
+            }*/
+            MainPage = nav;
         }
 
         public static DBHelper Database

@@ -2,11 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="timesheet.Views.HomePageLogin">
     <ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand" Margin="20">
-            <Image Source="roundedicon_logo_aryon.png" HeightRequest="120"/>
+            <Image Source="roundedicon_logo.png" HeightRequest="120"/>
             <Label Text="Username" />
             <Entry x:Name="usernameEntry" Placeholder="username" PlaceholderColor="#910C07"/>
             <Label Text="Password" />
             <Entry x:Name="passwordEntry" IsPassword="true" Placeholder="password" PlaceholderColor="#910C07"/>
+            <Switch x:Name="isPassword" Toggled="IsPassword_Toggled" />
             <Button Text="LOGIN" Clicked="OnLoginButtonClicked" BackgroundColor="#2D8183" TextColor="White" Margin="120,20,120,0"/>
             <Label x:Name="messageLabel" />
         </StackLayout>

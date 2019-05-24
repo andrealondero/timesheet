@@ -1,5 +1,6 @@
 ﻿using System;
 using timesheet.Models;
+using timesheet.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,35 +11,26 @@ namespace timesheet.Views
     public partial class DashBoardPage : ContentPage
 
     {
-        public static bool GetuserAsync { get; set; }
-        public static bool GetsupeuserAsync { get; set; }
         public DashBoardPage()
 
         {
             InitializeComponent();
-            BindingContext = new HomePageLogin();
+            BindingContext = new DashBoardViewModel(Navigation);
         }
 
-        async void OnLogoutButtonClicked(object sender, EventArgs e)
+        /*async void OnLogoutButtonClicked(object sender, EventArgs e)
         {
             App.IsUserLoggedIn = false;
             Navigation.InsertPageBefore(new HomePageLogin(), this);
             await Navigation.PopAsync();
-        }
+        }*/
 
         async void OnItemAdded(object sender, EventArgs e)
         {
-            if (!GetuserAsync)
+            await Navigation.PushAsync(new AddItemPage
             {
-                await Navigation.PushAsync(new AddItemPage
-                {
-                    BindingContext = new TsItems()
-                });
-            }
-            else
-            {
-                await DisplayAlert("Your Logged as", $"superuser", "OK");
-            }
+                BindingContext = new TsItems()
+            });
         }
 
         async void ViewerButton(object sender, EventArgs e)
@@ -51,29 +43,10 @@ namespace timesheet.Views
 
         async void ConfirmationButton(object sender, EventArgs e)
         {
-            var superuser = new Users
+            await Navigation.PushAsync(new ConfirmationListPage
             {
-                Mail = "paolo.loconsole",
-                Password = "supervisore"
-            };
-
-            var issuperuser = SuperuserLogged(superuser);
-            if (issuperuser)
-            {
-                await Navigation.PushAsync(new ConfirmationListPage
-                {
-                    BindingContext = new Users()
-                });
-            }
-            else
-            {
-                await DisplayAlert("You can't access this page", $"Maybe you're not a superuser", "OK");
-            }
-        }
-
-        bool SuperuserLogged(Users superuser)
-        {
-            return superuser.Mail == "paolo.loconsole" && superuser.Password == "supervisore";
+                BindingContext = new Users()
+            });
         }
     }
 }

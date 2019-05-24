@@ -40,13 +40,31 @@ namespace timesheet.Views
 
         async void OnSaveClicked(object sender, EventArgs e)
         {
-            var item = (TsItems)BindingContext;
+            if (String.IsNullOrEmpty(hourseditor.Text))
+            {
+                await DisplayAlert("Compiling error", "Insert worked hours number", "OK");
+            }
+            if (String.IsNullOrEmpty(descriptioneditor.Text))
+            {
+                await DisplayAlert("Compiling error", "Insert activities description", "OK");
+            }
+            else
+            {
+                var item = (TsItems)BindingContext;
+                await App.Database.SaveItemAsync(item);
+                await Navigation.PushAsync(new ItemListPage
+
+                {
+                    BindingContext = new TsItems()
+                });
+            }
+            /*var item = (TsItems)BindingContext;
             await App.Database.SaveItemAsync(item);
             await Navigation.PushAsync(new ItemListPage
 
             {
                 BindingContext = new TsItems()
-            });
+            });*/
         }
 
         async void OnCancelClicked(object sender, EventArgs e)

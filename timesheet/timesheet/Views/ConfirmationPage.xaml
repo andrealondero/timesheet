@@ -30,14 +30,14 @@
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Grid.Row="0" Text="Confirm" />
-            <Switch x:Name="confirmedSwitch" Grid.Column="0" Grid.Row="1" IsToggled="{Binding ConfirmedStatus}" Toggled="ConfirmedSwitch_Toggled" HorizontalOptions="Start" />
+            <Switch x:Name="confirmedSwitch" Grid.Column="0" Grid.Row="1" IsToggled="{Binding ConfirmedStatus, Mode=TwoWay}" Toggled="ConfirmedSwitch_Toggled" HorizontalOptions="Start" />
             <Label Grid.Column="1" Grid.Row="0" Text="Refuse" HorizontalOptions="End"/>
-            <Switch x:Name="refusedSwitch" Grid.Column="1" Grid.Row="1" IsToggled="{Binding RefusedStatus}" Toggled="RefusedSwitch_Toggled" />
+            <Switch x:Name="refusedSwitch" Grid.Column="1" Grid.Row="1" IsToggled="{Binding RefusedStatus, Mode=TwoWay}" Toggled="RefusedSwitch_Toggled" />
             </Grid>
 
         <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" Margin="10,30,10,0">
-            <Button Text="Cancel" Clicked="OnCancelClicked" HorizontalOptions="StartAndExpand" BackgroundColor="#2D8183" TextColor="White" />
-            <Button Text="Speak" Clicked="OnSpeakClicked" HorizontalOptions="EndAndExpand" BackgroundColor="#2D8183" TextColor="White" />
+                <Button Text="Cancel" Clicked="OnCancelClicked" HorizontalOptions="StartAndExpand" BackgroundColor="#2D8183" BorderColor="White" BorderWidth="0.5" BorderRadius="10" TextColor="White" />
+                <Button Text="Speak" Clicked="OnSpeakClicked" HorizontalOptions="EndAndExpand" BackgroundColor="#2D8183" BorderColor="White" BorderWidth="0.5" BorderRadius="10" TextColor="White" />
         </StackLayout>
     </StackLayout>
     </ScrollView>

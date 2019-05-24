@@ -63,6 +63,10 @@ namespace timesheet.Helpers
         }
 
 
+        public Task<Users> Getuser(int id)
+        {
+            return database.Table<Users>().Where(i => i.ID == id).FirstOrDefaultAsync();
+        }
         public Task<List<Users>> GetuserAsync()
 
         {

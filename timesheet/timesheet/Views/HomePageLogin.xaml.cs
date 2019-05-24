@@ -59,5 +59,17 @@ namespace timesheet.Views
         {
             return user.Mail == "paolo.loconsole" && user.Password == "supervisore";
         }
+
+        private void IsPassword_Toggled(object sender, ToggledEventArgs e)
+        {
+            if (isPassword.IsToggled)
+            {
+                passwordEntry.IsPassword = false;
+            }
+            if (!isPassword.IsToggled)
+            {
+                passwordEntry.IsPassword = true;
+            }
+        }
     }
 }

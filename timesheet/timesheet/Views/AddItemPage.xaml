@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="timesheet.Views.AddItemPage"
              Title="NEW TIMESHEET">
     <ContentPage.ToolbarItems>
@@ -10,11 +11,11 @@
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
             <Label Text="Date" FontSize="Medium" />
-            <DatePicker x:Name="datepicker" Date="{Binding Item.Date}" Format="yyyy-MM-dd" HeightRequest="45" FontSize="Small" Margin="0" />
+            <DatePicker x:Name="datepicker" Date="{Binding Item.Date, Mode=TwoWay}" MaximumDate="{x:Static sys:DateTime.Now}" Format="yyyy-MM-dd" HeightRequest="45" FontSize="Small" Margin="0" />
             <Label Text="Worked Hours" FontSize="Medium" />
-            <Editor x:Name="hourseditor" Text="{Binding Item.Hours}" Placeholder="0" PlaceholderColor="#910C07" HeightRequest="45" FontSize="Small" Margin="0" />
+            <Editor x:Name="hourseditor" Text="{Binding Item.Hours, Mode=TwoWay}" Placeholder="0" PlaceholderColor="#910C07" HeightRequest="45" FontSize="Small" Margin="0" />
             <Label Text="Description" FontSize="Medium" />
-            <Editor x:Name="descriptioneditor" Text="{Binding Item.Description}" Placeholder="your activities here" HeightRequest="100" MaxLength="120" FontSize="Small" Margin="0" />
+            <Editor x:Name="descriptioneditor" Text="{Binding Item.Description, Mode=TwoWay}" Placeholder="your activities here" HeightRequest="100" MaxLength="120" FontSize="Small" Margin="0" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -39,7 +39,7 @@ namespace timesheet.ViewModels
                 if (item.Description == value)
                     return;
                 item.Description = value;
-                OnPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public bool Confirmed
@@ -50,7 +50,7 @@ namespace timesheet.ViewModels
                 if (item.ConfirmedStatus == value)
                     return;
                 item.ConfirmedStatus = value;
-                OnPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
         public bool Refused
@@ -61,7 +61,7 @@ namespace timesheet.ViewModels
                 if (item.RefusedStatus == value)
                     return;
                 item.RefusedStatus = value;
-                OnPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
     }
