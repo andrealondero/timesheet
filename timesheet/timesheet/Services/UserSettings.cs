@@ -23,6 +23,14 @@ namespace timesheet.Helpers
             get => AppSettings.GetValueOrDefault(nameof(Password), string.Empty);
             set => AppSettings.AddOrUpdateValue(nameof(Password), value);
         }
+        public static void GetUserData()
+        {
+            App.Database.GetuserAsync();
+        }
+        public static void GetSuperuserData()
+        {
+            App.Database.GetsuperuserAsync();
+        }
         public static void ClearAllData()
         {
             AppSettings.Clear();

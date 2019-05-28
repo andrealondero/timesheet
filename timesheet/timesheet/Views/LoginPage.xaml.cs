@@ -31,14 +31,5 @@ namespace timesheet.Views
                 passwordEntry.IsPassword = true;
             }
         }
-
-        /*void btnLog_Clicked(object sender, System.EventArgs e)
-        {
-            AddValue("Password", passwordEntry.Text);
-            passwordEntry.Text = string.Empty;
-            AddValue("Mail", usernameEntry.Text);
-            usernameEntry.Text = string.Empty;
-            DisplayAlert("Login successfull", "User logged", "OK");
-        }*/
     }
 }

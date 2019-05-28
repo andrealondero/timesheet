@@ -15,38 +15,7 @@ namespace timesheet.Views
 
         {
             InitializeComponent();
-            BindingContext = new DashBoardViewModel(Navigation);
-        }
-
-        /*async void OnLogoutButtonClicked(object sender, EventArgs e)
-        {
-            App.IsUserLoggedIn = false;
-            Navigation.InsertPageBefore(new HomePageLogin(), this);
-            await Navigation.PopAsync();
-        }*/
-
-        async void OnItemAdded(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AddItemPage
-            {
-                BindingContext = new TsItems()
-            });
-        }
-
-        async void ViewerButton(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new ItemListPage
-            {
-                BindingContext = new Users()
-            });
-        }
-
-        async void ConfirmationButton(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new ConfirmationListPage
-            {
-                BindingContext = new Users()
-            });
+            BindingContext = new LoginPageViewModel(Navigation);
         }
     }
 }

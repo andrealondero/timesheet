@@ -6,9 +6,9 @@
     </ContentPage.ToolbarItems>
     
     <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Margin="80,20,80,20">
-        <Button Text="TIMESHEET COMPILER" Clicked="OnItemAdded" BackgroundColor="#2D8183" TextColor="White" BorderColor="White" BorderWidth="0.5" BorderRadius="10" Margin="0,0,0,20" />
-        <Button Text="TIMESHEET VIEWER" Clicked="ViewerButton" BackgroundColor="#2D8183" TextColor="White" BorderColor="White" BorderWidth="0.5" BorderRadius="10" Margin="0,0,0,20" />
-        <Button Text="TIMSHEET CONFIRMATION" Clicked="ConfirmationButton" BackgroundColor="#2D8183" BorderColor="White" BorderWidth="0.5" BorderRadius="10" TextColor="White" />
+        <Button Text="TIMESHEET COMPILER" Command="{Binding CompilerUserCommand}" BackgroundColor="#2D8183" TextColor="White" BorderColor="White" BorderWidth="0.5" BorderRadius="10" Margin="0,0,0,20" />
+        <Button Text="TIMESHEET VIEWER" Command="{Binding ViewerUserCommand}" BackgroundColor="#2D8183" TextColor="White" BorderColor="White" BorderWidth="0.5" BorderRadius="10" Margin="0,0,0,20" />
+        <Button Text="TIMSHEET CONFIRMATION" Command="{Binding ConfirmationSuperuserCommand}" BackgroundColor="#2D8183" BorderColor="White" BorderWidth="0.5" BorderRadius="10" TextColor="White" />
     </StackLayout>
 
 </ContentPage>
