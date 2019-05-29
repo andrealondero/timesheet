@@ -3,6 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="timesheet.Views.ConfirmationListPage" 
              Title="CONFIRMATION">
+    
+    <StackLayout Orientation="Vertical">
+        <Picker Title="CHOOSE A FILTER" SelectedIndexChanged="OnPickerSelectedIndexChanged" 
+                VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="Medium"
+                Margin="50,30,50,10">
+            <Picker.Items>
+                <x:String>CONFIRMED</x:String>
+                <x:String>REFUSED</x:String>
+                <x:String>SUSPENDED</x:String>
+                <x:String>ALL</x:String>
+            </Picker.Items>
+        </Picker>
 
     <ListView x:Name="listView" 
               Margin="20" 
@@ -31,4 +43,6 @@
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
+
+    </StackLayout>
 </ContentPage>

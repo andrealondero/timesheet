@@ -23,6 +23,7 @@ namespace timesheet.ViewModels
             ViewerUserCommand = new Command(() => GoToListItem());
             ConfirmationSuperuserCommand = new Command(() => GoToConfirmItem());
         }
+        //accesso alla compilazione timesheet solo per user
         public void GoToAddItem()
         {
             var userCredits = new Users
@@ -34,9 +35,13 @@ namespace timesheet.ViewModels
             if (IsUser)
             {
                 UserSettings.GetUserData();
-                _navigation.PushAsync(new Views.AddItemPage());
+                _navigation.PushAsync(new Views.AddItemPage
+                {
+                    BindingContext = new TsItems()
+                });
             }
         }
+        //accesso alla lista timesheet solo per user
         public void GoToListItem()
         {
             var userCredits = new Users
@@ -48,9 +53,13 @@ namespace timesheet.ViewModels
             if (IsUser)
             {
                 UserSettings.GetUserData();
-                _navigation.PushAsync(new Views.ItemListPage());
+                _navigation.PushAsync(new Views.ItemListPage
+                {
+                    BindingContext = new TsItems()
+                });
             }
         }
+        //accesso alla pagina conferma solo per supervisore
         public void GoToConfirmItem()
         {
             var userCredits = new Users

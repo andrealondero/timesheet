@@ -1,7 +1,9 @@
 ﻿using System;
 using System.IO;
+
 using timesheet.Helpers;
 using timesheet.Views;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -29,17 +31,8 @@ namespace timesheet
             nav.BarBackgroundColor = (Color)App.Current.Resources["primaryAqua"];
             nav.BarTextColor = Color.White;
 
-            /*if (!IsUserLoggedIn)
-            {
-                MainPage = nav;
-            }
-            else
-            {
-                MainPage = new NavigationPage(new DashBoardPage());
-            }*/
             MainPage = nav;
         }
-
         public static DBHelper Database
         {
             get
@@ -51,20 +44,14 @@ namespace timesheet
                 return database;
             }
         }
-
         public int ResumeAtTodoId { get; set; }
-
         protected override void OnStart()
         {
         }
-
         protected override void OnSleep()
-
         {
         }
-
         protected override void OnResume()
-
         {
         }
     }

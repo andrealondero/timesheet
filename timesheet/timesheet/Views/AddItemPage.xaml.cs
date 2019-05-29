@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using timesheet.Models;
-using timesheet.ViewModels;
+﻿using FluentValidation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
+using System;
+
+using timesheet.Models;
+using timesheet.Validator;
+using timesheet.ViewModels;
 
 namespace timesheet.Views
 {
@@ -14,11 +14,12 @@ namespace timesheet.Views
     public partial class AddItemPage : ContentPage
     {
         public TsItems Item { get; set; }
-        ItemPageViewModel viewModel;
+        public IValidator _itemValidator;      
+        AddItemViewModel viewModel;
         public AddItemPage(ItemPageViewModel viewModel)
         {
             InitializeComponent();
-            BindingContext = this.viewModel = viewModel;
+            _itemValidator = new ItemValidator();
         }
 
         public AddItemPage()
@@ -34,7 +35,7 @@ namespace timesheet.Views
                 User_ID = 1,
                 ID = 1
             };
-            viewModel = new ItemPageViewModel(Item);
+            viewModel = new AddItemViewModel(Navigation);
             BindingContext = viewModel;
         }
 
@@ -53,18 +54,10 @@ namespace timesheet.Views
                 var item = (TsItems)BindingContext;
                 await App.Database.SaveItemAsync(item);
                 await Navigation.PushAsync(new ItemListPage
-
                 {
                     BindingContext = new TsItems()
                 });
             }
-            /*var item = (TsItems)BindingContext;
-            await App.Database.SaveItemAsync(item);
-            await Navigation.PushAsync(new ItemListPage
-
-            {
-                BindingContext = new TsItems()
-            });*/
         }
 
         async void OnCancelClicked(object sender, EventArgs e)

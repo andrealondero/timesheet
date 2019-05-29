@@ -4,17 +4,23 @@ using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using timesheet.Helpers;
+
 using Xamarin.Forms;
+using FluentValidation;
+
+using timesheet.Helpers;
+using timesheet.Models;
+using timesheet.Services;
 
 namespace timesheet.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        public TsItems _items;
+        public IValidator _itemValidator;
+        public ITitemsRepository _itemRepository;
         public INavigation _navigation;
-
         public event EventHandler IsBusyChanged;
-
         public event EventHandler IsValidChanged;
 
         readonly List<string> errors = new List<string>();
@@ -22,25 +28,8 @@ namespace timesheet.ViewModels
 
         public BaseViewModel()
         {
-            //Make sure validation is performed on startup
             Validate();
-        }
-        public bool IsValid
-        {
-            get { return errors.Count == 0; }
-        }
-        protected List<string> Errors
-        {
-            get { return errors; }
-        }
-        public virtual string Error
-        {
-            get
-            {
-                return errors.Aggregate(new StringBuilder(), (b, s) => b.AppendLine(s)).ToString().Trim();
-            }
-        }
-
+        }       
         protected virtual void Validate()
         {
             NotifyPropertyChanged("IsValid");
@@ -50,32 +39,9 @@ namespace timesheet.ViewModels
             if (method != null)
                 method(this, EventArgs.Empty);
         }
-
-        protected virtual void ValidateProperty(Func<bool> validate, string error)
+        protected List<string> Errors
         {
-            if (validate())
-            {
-                if (!Errors.Contains(error))
-                    Errors.Add(error);
-            }
-            else
-            {
-                Errors.Remove(error);
-            }
-        }
-        public bool IsBusy
-        {
-            get { return isBusy; }
-            set
-            {
-                if (isBusy != value)
-                {
-                    isBusy = value;
-
-                    NotifyPropertyChanged("IsBusy");
-                    OnIsBusyChanged();
-                }
-            }
+            get { return errors; }
         }
         protected virtual void OnIsBusyChanged()
         {
@@ -85,7 +51,7 @@ namespace timesheet.ViewModels
                 ev(this, EventArgs.Empty);
             }
         }
-
+        #region USER
         public string Mail
         {
             get => UserSettings.Mail;
@@ -104,6 +70,65 @@ namespace timesheet.ViewModels
                 NotifyPropertyChanged("Password");
             }
         }
+        #endregion
+
+        /*#region TIMESHEET
+        public DateTime Date
+        {
+            get => _items.Date;
+            set
+            {
+                _items.Date = value;
+                NotifyPropertyChanged("Date");
+            }
+        }
+        public int Hours
+        {
+            get => _items.Hours;
+            set
+            {
+                _items.Hours = value;
+                NotifyPropertyChanged("Hours");
+            }
+        }
+        public string Description
+        {
+            get => _items.Description;
+            set
+            {
+                _items.Description = value;
+                NotifyPropertyChanged("Description");
+            }
+        }
+        public bool ConfirmedStatus
+        {
+            get => _items.ConfirmedStatus;
+            set
+            {
+                _items.ConfirmedStatus = value;
+                NotifyPropertyChanged("ConfirmedStatus");
+            }
+        }
+        public bool RefusedSatus
+        {
+            get => _items.RefusedStatus;
+            set
+            {
+                _items.RefusedStatus = value;
+                NotifyPropertyChanged("RefusedStatus");
+            }
+        }
+        List<TsItems> _itemsList;
+        public List<TsItems> ItemsList
+        {
+            get => _itemsList;
+            set
+            {
+                _itemsList = value;
+                NotifyPropertyChanged("ItemsList");
+            }
+        }
+        #endregion*/
 
         #region INotifyPropertyChanged  
         public event PropertyChangedEventHandler PropertyChanged;
@@ -112,12 +137,5 @@ namespace timesheet.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-        /*public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
-        }*/
     }
 }

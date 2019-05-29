@@ -14,7 +14,6 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <ScrollView>
     <StackLayout Orientation="Vertical">
         <Picker Title="CHOOSE A FILTER" SelectedIndexChanged="OnPickerSelectedIndexChanged" 
                 VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="Medium"
@@ -34,28 +33,26 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="35"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="4*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="4*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Text="{Binding Date, StringFormat='{0:yyyy-MM-dd}'}" MaxLines="1" VerticalTextAlignment="Center" FontSize="16" HorizontalOptions="StartAndExpand"/>
-                                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Hours}" VerticalTextAlignment="Center" FontSize="13" WidthRequest="10"/>
-                                <Label Grid.Column="2" Grid.Row="0" Text="{Binding Description}" LineBreakMode="TailTruncation" MaxLines="1" VerticalTextAlignment="Center" FontSize="13"/>
-                                <Image Grid.Column="3" Grid.Row="0" Source="check.png" IsVisible="{Binding ConfirmedStatus}" HorizontalOptions="EndAndExpand"/>
-                                <Image Grid.Column="3" Grid.Row="0" Source="check_red.png" IsVisible="{Binding RefusedStatus}" HorizontalOptions="EndAndExpand"/>
-                            </Grid>
-                        </ViewCell>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="35"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.Row="0" Text="{Binding Date, StringFormat='{0:yyyy-MM-dd}'}" MaxLines="1" VerticalTextAlignment="Center" FontSize="16" HorizontalOptions="StartAndExpand"/>
+                            <Label Grid.Column="1" Grid.Row="0" Text="{Binding Hours}" VerticalTextAlignment="Center" FontSize="13" WidthRequest="10"/>
+                            <Label Grid.Column="2" Grid.Row="0" Text="{Binding Description}" LineBreakMode="TailTruncation" MaxLines="1" VerticalTextAlignment="Center" FontSize="13"/>
+                            <Image Grid.Column="3" Grid.Row="0" Source="check.png" IsVisible="{Binding ConfirmedStatus}" HorizontalOptions="EndAndExpand"/>
+                            <Image Grid.Column="3" Grid.Row="0" Source="check_red.png" IsVisible="{Binding RefusedStatus}" HorizontalOptions="EndAndExpand"/>
+                        </Grid>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
+
     </StackLayout>
-    </ScrollView>
-    
 </ContentPage>

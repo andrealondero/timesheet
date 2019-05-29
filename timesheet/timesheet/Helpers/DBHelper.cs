@@ -1,14 +1,17 @@
 ﻿using SQLite;
+using Xamarin.Forms;
+
 using System.Collections.Generic;
 using System.Threading.Tasks;
+
 using timesheet.Models;
-using Xamarin.Forms;
 
 namespace timesheet.Helpers
 {
     public class DBHelper
     {
         readonly SQLiteAsyncConnection database;
+        public const string DbFileName = "ManagerDB.db3";
         public DBHelper(string dbPath)
 
         {

@@ -13,7 +13,7 @@ namespace timesheet.Views
     public partial class ConfirmationListPage : ContentPage
     {
         public TsItems Item { get; set; }
-        ItemViewModel viewModel;
+        AddItemViewModel viewModel;
         List<TsItems> Items;
         private ObservableCollection<DBHelper> items;
 
@@ -38,7 +38,31 @@ namespace timesheet.Views
             });
             listView.ItemsSource = Items;
         }
+        async void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var picker = (Picker)sender;
+            int selectedIndex = picker.SelectedIndex;
 
+            if (selectedIndex == 0)
+            {
+                listView.ItemsSource = await App.Database.GetItemsConfirmedAsync();
+            }
+
+            else if (selectedIndex == 1)
+            {
+                listView.ItemsSource = await App.Database.GetItemsRefusedAsync();
+            }
+
+            else if (selectedIndex == 2)
+            {
+                listView.ItemsSource = await App.Database.GetItemsSuspendedAsync();
+            }
+
+            else if (selectedIndex == 3)
+            {
+                listView.ItemsSource = await App.Database.GetAllItemsAsync();
+            }
+        }
         protected override async void OnAppearing()
         {
             base.OnAppearing();

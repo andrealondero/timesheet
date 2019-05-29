@@ -13,9 +13,8 @@ namespace timesheet.Views
     public partial class ItemListPage : ContentPage
     {
         public TsItems Item { get; set; }
-        ItemViewModel viewModel;
+        ListViewModel viewModel;
         List<TsItems> Items;
-        private ObservableCollection<DBHelper> items;
 
         public ItemListPage()
         {
@@ -64,7 +63,6 @@ namespace timesheet.Views
                 listView.ItemsSource = await App.Database.GetAllItemsAsync();
             }
         }
-
         async void OnItemAdded(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddItemPage
@@ -75,11 +73,6 @@ namespace timesheet.Views
 
         async void OnListItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            /*if (!(e.SelectedItem is TsItems item))
-                return;
-            await Navigation.PushAsync(new ItemPage(new ItemPageViewModel(item)));
-            listView.SelectedItem = null;*/
-            // errori di bindaggio dati, non posso poi salvare o modificare l'item nel db
             if (e.SelectedItem != null)
             {
                 await Navigation.PushAsync(new ItemPage
