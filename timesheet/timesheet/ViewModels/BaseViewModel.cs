@@ -17,9 +17,10 @@ namespace timesheet.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public TsItems _items;
+        public Users _users;
         public IValidator _itemValidator;
+        public IValidator _userValidator;
         public ITitemsRepository _itemRepository;
-        public INavigation _navigation;
         public event EventHandler IsBusyChanged;
         public event EventHandler IsValidChanged;
 

@@ -8,6 +8,7 @@ namespace timesheet.ViewModels
 {
     public class AddItemViewModel : BaseViewModel
     {
+        public INavigation _navigation { get; private set; }
         public AddItemViewModel(INavigation navigation)
         {
             _navigation = navigation;

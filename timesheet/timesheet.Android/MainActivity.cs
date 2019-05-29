@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using timesheet.Views;
 
 namespace timesheet.Droid
 {
@@ -13,6 +14,8 @@ namespace timesheet.Droid
 
         protected override void OnCreate(Bundle bundle)
         {
+            DashBoardPage.EmulateBackPressed = OnBackPressed;
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 

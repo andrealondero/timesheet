@@ -51,12 +51,16 @@ namespace timesheet.Views
             }
             else
             {
-                var item = (TsItems)BindingContext;
-                await App.Database.SaveItemAsync(item);
-                await Navigation.PushAsync(new ItemListPage
+                if (!String.IsNullOrEmpty(hourseditor.Text) && !String.IsNullOrEmpty(descriptioneditor.Text))
                 {
-                    BindingContext = new TsItems()
-                });
+                    bool CreateItem = await Application.Current.MainPage.DisplayAlert("NEW ITEM", "Add a new item?", "YES", "NO");
+                    if (CreateItem)
+                    {
+                        var item = (TsItems)BindingContext;
+                        await App.Database.SaveItemAsync(item);
+                        await Navigation.PushAsync(new ItemListPage());
+                    }
+                }
             }
         }
 

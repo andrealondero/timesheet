@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="timesheet.Views.DashBoardPage" Title="DASHBOARD">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="timesheet.Views.DashBoardPage" 
+             NavigationPage.HasNavigationBar="False"
+             Title="DASHBOARD">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Logout" Command="{Binding LogoutCommand}" />
-    </ContentPage.ToolbarItems>
-    
     <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Margin="80,20,80,20">
-        <Button Text="TIMESHEET COMPILER" Command="{Binding CompilerUserCommand}" BackgroundColor="#2D8183" TextColor="White" BorderColor="White" BorderWidth="0.5" BorderRadius="10" Margin="0,0,0,20" />
-        <Button Text="TIMESHEET VIEWER" Command="{Binding ViewerUserCommand}" BackgroundColor="#2D8183" TextColor="White" BorderColor="White" BorderWidth="0.5" BorderRadius="10" Margin="0,0,0,20" />
-        <Button Text="TIMSHEET CONFIRMATION" Command="{Binding ConfirmationSuperuserCommand}" BackgroundColor="#2D8183" BorderColor="White" BorderWidth="0.5" BorderRadius="10" TextColor="White" />
+        <Button Text="TIMESHEET COMPILER" x:Name="compilerButton" Command="{Binding CompilerUserCommand}" BackgroundColor="#2D8183" TextColor="White" BorderColor="White" BorderWidth="0.5" BorderRadius="10" Margin="0,0,0,20" />
+        <Button Text="TIMESHEET VIEWER" x:Name="viewerButton" Command="{Binding ViewerUserCommand}" BackgroundColor="#2D8183" TextColor="White" BorderColor="White" BorderWidth="0.5" BorderRadius="10" Margin="0,0,0,20" />
+        <Button Text="Logout" Command="{Binding LogoutCommand}"/>
     </StackLayout>
 
 </ContentPage>

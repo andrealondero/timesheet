@@ -4,10 +4,12 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="timesheet.Views.AddItemPage"
              Title="NEW TIMESHEET">
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Cancel" Clicked="OnCancelClicked" />
         <ToolbarItem Text="Save" Clicked="OnSaveClicked" />
     </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
             <Label Text="Date" FontSize="Medium" />

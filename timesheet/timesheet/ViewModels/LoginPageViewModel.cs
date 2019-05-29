@@ -1,13 +1,17 @@
 ﻿using System.Windows.Input;
+
 using timesheet.Helpers;
 using timesheet.Models;
+using timesheet.Validator;
 using timesheet.Views;
+
 using Xamarin.Forms;
 
 namespace timesheet.ViewModels
 {
     public class LoginPageViewModel : BaseViewModel
     {
+        public INavigation _navigation { get; private set; }
         public ICommand LoginCommand { get; private set; }
         public ICommand LogoutCommand { get; private set; }
         public ICommand CompilerUserCommand { get; private set; }
@@ -17,6 +21,8 @@ namespace timesheet.ViewModels
         public LoginPageViewModel(INavigation navigation)
         {
             _navigation = navigation;
+            _users = new Users();
+            _userValidator = new UserValidator();
             LoginCommand = new Command(() => UpdateUserInfo());
             LogoutCommand = new Command(() => ResetUserInfo());
             CompilerUserCommand = new Command(() => GoToAddItem());
@@ -74,6 +80,7 @@ namespace timesheet.ViewModels
                 _navigation.PushAsync(new Views.ConfirmationListPage());
             }
         }
+        //Login command
         public void UpdateUserInfo()
         {
             var userCredits = new Users
@@ -86,12 +93,12 @@ namespace timesheet.ViewModels
             if (IsUser && !IsSuperUser)
             {
                 UserSettings.GetUserData();
-                _navigation.PushAsync(new Views.DashBoardPage());
+                _navigation.PushAsync(new DashBoardPage());
             }
             else if (!IsUser && IsSuperUser)
             {
                 UserSettings.GetSuperuserData();
-                _navigation.PushAsync(new Views.DashBoardPage());
+                _navigation.PushAsync(new DashBoardSuperPage());
             }
         }
         bool UserUser(Users user)

@@ -43,30 +43,46 @@ namespace timesheet.Views
 
         async void OnSaveClicked(object sender, EventArgs e)
         {
-            var item = (TsItems)BindingContext;
-            await App.Database.SaveItemAsync(item);
-            await Navigation.PushAsync(new ItemListPage
+            if (String.IsNullOrEmpty(hoursEntry.Text))
             {
-                BindingContext = new TsItems()
-            });
+                await DisplayAlert("Compiling error", "Insert worked hours number", "OK");
+            }
+            if (String.IsNullOrEmpty(descriptionEditor.Text))
+            {
+                await DisplayAlert("Compiling error", "Insert activities description", "OK");
+            }
+            else
+            {
+                if (!String.IsNullOrEmpty(hoursEntry.Text) && !String.IsNullOrEmpty(descriptionEditor.Text))
+                {
+                    bool CreateItem = await Application.Current.MainPage.DisplayAlert("MODIFY ITEM", "Save changes?", "YES", "NO");
+                    if (CreateItem)
+                    {
+                        var item = (TsItems)BindingContext;
+                        await App.Database.SaveItemAsync(item);
+                        await Navigation.PushAsync(new ItemListPage
+                        {
+                            BindingContext = new TsItems()
+                        });
+                    }
+                }
+            }
         }
 
         async void OnDeleteClicked(object sender, EventArgs e)
         {
-            var item = (TsItems)BindingContext;
-            await App.Database.DeleteItemAsync(item);
-            await Navigation.PopAsync();
+            bool CreateItem = await Application.Current.MainPage.DisplayAlert("DELETE ITEM", "Delete timesheet?", "YES", "NO");
+            if (CreateItem)
+            {
+                var item = (TsItems)BindingContext;
+                await App.Database.DeleteItemAsync(item);
+                await Navigation.PopAsync();
+            }
         }
 
         async void OnCancelClicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
-        }
-
-        void OnSpeakClicked(object sender, EventArgs e)
-        {
-            var item = (TsItems)BindingContext;
-            DependencyService.Get<ITextToSpeech>().Speak(item.Hours + " " + item.Description);
         }
     }
 }

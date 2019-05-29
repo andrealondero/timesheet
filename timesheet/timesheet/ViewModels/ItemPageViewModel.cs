@@ -7,6 +7,7 @@ namespace timesheet.ViewModels
 {
     public class ItemPageViewModel : BaseViewModel
     {
+        public INavigation _navigation { get; private set; }
         public TsItems Item { get; set; }
         public ItemPageViewModel(TsItems item = null)
         {

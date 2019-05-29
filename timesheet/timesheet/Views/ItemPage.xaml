@@ -39,9 +39,8 @@
                 <Image Grid.Column="1" Grid.Row="1" Source="check_red.png" IsVisible="{Binding RefusedStatus}" HorizontalOptions="End"/>
             </Grid>
 
-        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" Margin="10,0,10,0">
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" Margin="10,0,10,0">
                 <Button Text="Cancel" Clicked="OnCancelClicked" HorizontalOptions="StartAndExpand" BackgroundColor="#2D8183" BorderColor="White" BorderWidth="0.5" BorderRadius="10" TextColor="White" />
-                <Button Text="Speak" Clicked="OnSpeakClicked" HorizontalOptions="EndAndExpand" BackgroundColor="#2D8183" BorderColor="White" BorderWidth="0.5" BorderRadius="10" TextColor="White" />
         </StackLayout>
         
     </StackLayout>

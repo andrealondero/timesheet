@@ -9,7 +9,10 @@
             <StackLayout Spacing="15" VerticalOptions="CenterAndExpand">
                 <Entry x:Name="usernameEntry" Placeholder="User Name" Text="{Binding Mail}" HorizontalOptions="FillAndExpand" HeightRequest="40" />
                 <Entry x:Name="passwordEntry" Placeholder="Password" IsPassword="true" Text="{Binding Password}" HorizontalOptions="FillAndExpand" HeightRequest="40" />
-                <Switch x:Name="isPassword" Toggled="IsPassword_Toggled" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Make password visible" HorizontalOptions="Start"/>
+                    <Switch x:Name="isPassword" Toggled="IsPassword_Toggled" HorizontalOptions="EndAndExpand" />
+                </StackLayout>
                 <Button x:Name="loginButton" Text="Login" TextColor="White" BackgroundColor="#533F95" FontAttributes="Bold" BorderColor="White" BorderWidth="0.5" BorderRadius="10" HorizontalOptions="FillAndExpand" Command="{Binding LoginCommand}" />
             </StackLayout>
         </StackLayout>

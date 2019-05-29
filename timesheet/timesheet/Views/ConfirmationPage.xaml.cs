@@ -42,9 +42,23 @@ namespace timesheet.Views
 
         async void OnSave(object sender, EventArgs e)
         {
-            var todoItem = (TsItems)BindingContext;
-            await App.Database.SaveItemAsync(todoItem);
-            await Navigation.PopAsync();
+            if (confirmedSwitch.IsVisible && refusedSwitch.IsVisible)
+            {
+                await DisplayAlert("ERROR", "Please choose CONFIRM OR REFUSE", "OK");
+            }
+            else
+            {
+                if (confirmedSwitch.IsVisible && !refusedSwitch.IsVisible || !confirmedSwitch.IsVisible && refusedSwitch.IsVisible)
+                {
+                    bool CreateItem = await Application.Current.MainPage.DisplayAlert("CONFIRM", "Save the timesheet?", "YES", "NO");
+                    if (CreateItem)
+                    {
+                        var todoItem = (TsItems)BindingContext;
+                        await App.Database.SaveItemAsync(todoItem);
+                        await Navigation.PopAsync();
+                    }
+                }
+            }
         }
 
         async void OnCancelClicked(object sender, EventArgs e)
