@@ -25,9 +25,7 @@ namespace timesheet.Views
             {
                 confirmedSwitch.IsVisible = true;
             }
-
         }
-
         private void ConfirmedSwitch_Toggled(object sender, ToggledEventArgs e)
         {
             if (confirmedSwitch.IsToggled)
@@ -39,7 +37,6 @@ namespace timesheet.Views
                 refusedSwitch.IsVisible = true;
             }
         }
-
         async void OnSave(object sender, EventArgs e)
         {
             if (confirmedSwitch.IsVisible && refusedSwitch.IsVisible)
@@ -64,12 +61,6 @@ namespace timesheet.Views
         async void OnCancelClicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
-        }
-
-        void OnSpeakClicked(object sender, EventArgs e)
-        {
-            var todoItem = (TsItems)BindingContext;
-            DependencyService.Get<ITextToSpeech>().Speak(todoItem.Hours + " " + todoItem.Description);
         }
     }
 }

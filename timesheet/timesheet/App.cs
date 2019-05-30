@@ -27,11 +27,19 @@ namespace timesheet
             Resources.Add("primaryRed", Color.FromHex("FF5657"));
             Resources.Add("primaryDarkRed", Color.FromHex("910C07"));
 
-            var nav = new NavigationPage(new LoginPage());
-            nav.BarBackgroundColor = (Color)App.Current.Resources["primaryAqua"];
-            nav.BarTextColor = Color.White;
-
-            MainPage = nav;
+            SetMainPage();
+        }
+        private void SetMainPage()
+        {
+            if (!string.IsNullOrEmpty(UserSettings.Mail)
+                && !string.IsNullOrEmpty(UserSettings.Password))
+            {
+                var nav = new NavigationPage(new DashBoardPage());
+                nav.BarBackgroundColor = (Color)App.Current.Resources["primaryAqua"];
+                nav.BarBackgroundColor = (Color)App.Current.Resources["primaryAqua"];
+                MainPage = nav;
+            }
+            else MainPage = new NavigationPage(new LoginPage());
         }
         public static DBHelper Database
         {

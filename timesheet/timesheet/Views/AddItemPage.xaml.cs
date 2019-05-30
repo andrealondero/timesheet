@@ -58,12 +58,14 @@ namespace timesheet.Views
                     {
                         var item = (TsItems)BindingContext;
                         await App.Database.SaveItemAsync(item);
-                        await Navigation.PushAsync(new ItemListPage());
+                        //await Navigation.PushAsync(new ItemListPage());
+                        Navigation.InsertPageBefore(new ItemListPage(),
+                            Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
+                        await Navigation.PopAsync();
                     }
                 }
             }
         }
-
         async void OnCancelClicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();

@@ -60,10 +60,9 @@ namespace timesheet.Views
                     {
                         var item = (TsItems)BindingContext;
                         await App.Database.SaveItemAsync(item);
-                        await Navigation.PushAsync(new ItemListPage
-                        {
-                            BindingContext = new TsItems()
-                        });
+                        Navigation.InsertPageBefore(new ItemListPage(),
+                            Navigation.NavigationStack[Navigation.NavigationStack.Count - 3]);
+                        await Navigation.PopAsync();
                     }
                 }
             }

@@ -22,32 +22,27 @@ namespace timesheet.Helpers
         }
 
         public Task<List<TsItems>> GetAllItemsAsync()
-
         {
-            return database.Table<TsItems>().ToListAsync();
+            return database.QueryAsync<TsItems>("SELECT * FROM [TsItems] ORDER BY Date DESC");
+            //return database.Table<TsItems>().ToListAsync();
         }
         public Task<List<TsItems>> GetItemsSuspendedAsync()
-
         {
-            return database.QueryAsync<TsItems>("SELECT * FROM [TsItems] WHERE [ConfirmedStatus] = 0 AND [RefusedStatus] = 0");
+            return database.QueryAsync<TsItems>("SELECT * FROM [TsItems] WHERE [ConfirmedStatus] = 0 AND [RefusedStatus] = 0 ORDER BY Date DESC");
         }
         public Task<List<TsItems>> GetItemsConfirmedAsync()
-
         {
-            return database.QueryAsync<TsItems>("SELECT * FROM [TsItems] WHERE [ConfirmedStatus] = 1");
+            return database.QueryAsync<TsItems>("SELECT * FROM [TsItems] WHERE [ConfirmedStatus] = 1 ORDER BY Date DESC");
         }
         public Task<List<TsItems>> GetItemsRefusedAsync()
-
         {
-            return database.QueryAsync<TsItems>("SELECT * FROM [TsItems] WHERE [RefusedStatus] = 1");
+            return database.QueryAsync<TsItems>("SELECT * FROM [TsItems] WHERE [RefusedStatus] = 1 ORDER BY Date DESC");
         }
         public Task<TsItems> GetItemAsync(int id)
-
         {
             return database.Table<TsItems>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
         public Task<int> SaveItemAsync(TsItems item)
-
         {
             if (item.ID != 0)
 
@@ -60,11 +55,9 @@ namespace timesheet.Helpers
             }
         }
         public Task<int> DeleteItemAsync(TsItems item)
-
         {
             return database.DeleteAsync(item);
         }
-
 
         public Task<Users> Getuser(int id)
         {
