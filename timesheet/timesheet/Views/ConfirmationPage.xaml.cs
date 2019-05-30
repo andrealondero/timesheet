@@ -57,7 +57,6 @@ namespace timesheet.Views
                 }
             }
         }
-
         async void OnCancelClicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
