@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Threading.Tasks;
+using System.Windows.Input;
 
 using timesheet.Helpers;
 using timesheet.Models;
@@ -12,18 +13,19 @@ namespace timesheet.ViewModels
     public class LoginPageViewModel : BaseViewModel
     {
         public INavigation _navigation { get; private set; }
-        public ICommand LoginCommand { get; private set; }
+        //public ICommand LoginCommand { get; private set; }
         public ICommand LogoutCommand { get; private set; }
         public ICommand CompilerUserCommand { get; private set; }
         public ICommand ViewerUserCommand { get; private set; }
         public ICommand ConfirmationSuperuserCommand { get; private set; }
+        public LoginPage _login;
 
         public LoginPageViewModel(INavigation navigation)
         {
             _navigation = navigation;
             _users = new Users();
             _userValidator = new UserValidator();
-            LoginCommand = new Command(() => UpdateUserInfo());
+            //LoginCommand = new Command(() => UpdateUserInfo());
             LogoutCommand = new Command(() => ResetUserInfo());
             CompilerUserCommand = new Command(() => GoToAddItem());
             ViewerUserCommand = new Command(() => GoToListItem());
@@ -80,9 +82,10 @@ namespace timesheet.ViewModels
                 _navigation.PushAsync(new Views.ConfirmationListPage());
             }
         }
-        //Login command
+        /*//Login command
         public void UpdateUserInfo()
         {
+            var validations = _userValidator.Validate(_users);
             var userCredits = new Users
             {
                 Mail = UserSettings.Mail,
@@ -90,17 +93,24 @@ namespace timesheet.ViewModels
             };
             var IsUser = UserUser(userCredits);
             var IsSuperUser = SuperUserUser(userCredits);
-            if (IsUser && !IsSuperUser)
+
+            if (validations.IsValid && IsUser && !IsSuperUser)
             {
-                UserSettings.GetUserData();
-                _navigation.PushAsync(new DashBoardPage());
+                    UserSettings.GetUserData();
+                    Application.Current.MainPage.DisplayAlert("WELCOME", "andrea.londero", "OK");
+                    _navigation.PushAsync(new DashBoardPage());
             }
-            else if (!IsUser && IsSuperUser)
+            else if (validations.IsValid &&  !IsUser && IsSuperUser)
             {
                 UserSettings.GetSuperuserData();
+                Application.Current.MainPage.DisplayAlert("WELCOME", "paolo.loconsole", "OK");
                 _navigation.PushAsync(new DashBoardSuperPage());
             }
-        }
+            else
+            {
+               Application.Current.MainPage.DisplayAlert("LOGIN ERROR", validations.Errors[0].ErrorMessage, "Ok");
+            }
+        }*/
         bool UserUser(Users user)
         {
             return user.Mail == "andrea.londero" && user.Password == "aryonsolutions";
@@ -110,10 +120,15 @@ namespace timesheet.ViewModels
             return user.Mail == "paolo.loconsole" && user.Password == "supervisore";
         }
 
-        void ResetUserInfo()
+        async Task ResetUserInfo()
         {
-            _navigation.PushAsync(new LoginPage());
-            UserSettings.ClearAllData();
+            bool logoutAccept = await Application.Current.MainPage.DisplayAlert("LOGOUT", "Are you sure", "YES", "NO");
+            if (logoutAccept)
+            {
+                UserSettings.ClearAllData();
+                await _navigation.PushAsync(new LoginPage());
+                UserSettings.ClearAllData();
+            }
         }
     }
 }

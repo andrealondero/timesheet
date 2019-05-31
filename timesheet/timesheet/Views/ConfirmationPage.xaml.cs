@@ -36,7 +36,7 @@ namespace timesheet.Views
             {
                 refusedSwitch.IsVisible = true;
             }
-        }
+        }       
         async void OnSave(object sender, EventArgs e)
         {
             if (confirmedSwitch.IsVisible && refusedSwitch.IsVisible)

@@ -13,7 +13,7 @@
                     <Label Text="Make password visible" HorizontalOptions="Start"/>
                     <Switch x:Name="isPassword" Toggled="IsPassword_Toggled" HorizontalOptions="EndAndExpand" />
                 </StackLayout>
-                <Button x:Name="loginButton" Text="Login" TextColor="White" BackgroundColor="#533F95" FontAttributes="Bold" BorderColor="White" BorderWidth="0.5" BorderRadius="10" HorizontalOptions="FillAndExpand" Command="{Binding LoginCommand}" />
+                <Button x:Name="loginButton" Text="Login" TextColor="White" BackgroundColor="#533F95" FontAttributes="Bold" BorderColor="White" BorderWidth="0.5" BorderRadius="10" HorizontalOptions="FillAndExpand" Clicked="LoginButton_Clicked"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
