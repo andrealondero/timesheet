@@ -2,6 +2,7 @@
 using System.IO;
 
 using timesheet.Helpers;
+using timesheet.ViewModels;
 using timesheet.Views;
 
 using Xamarin.Forms;
@@ -16,6 +17,7 @@ namespace timesheet
     {
         public static bool IsUserLoggedIn { get; set; }
         static DBHelper database;
+        LoginPageViewModel login;
 
         public App()
         {
@@ -34,10 +36,20 @@ namespace timesheet
             if (!string.IsNullOrEmpty(UserSettings.Mail)
                 && !string.IsNullOrEmpty(UserSettings.Password))
             {
-                var nav = new NavigationPage(new DashBoardPage());
-                nav.BarBackgroundColor = (Color)App.Current.Resources["primaryAqua"];
-                nav.BarBackgroundColor = (Color)App.Current.Resources["primaryAqua"];
-                MainPage = nav;
+                if (UserSettings.Mail == "andrea.londero" && UserSettings.Password == "aryonsolutions")
+                {
+                    var nav = new NavigationPage(new DashBoardPage());
+                    nav.BarBackgroundColor = (Color)App.Current.Resources["primaryAqua"];
+                    nav.BarBackgroundColor = (Color)App.Current.Resources["primaryAqua"];
+                    MainPage = nav;
+                }
+                else if (UserSettings.Mail == "paolo.loconsole" && UserSettings.Password == "supervisore")
+                {
+                    var nav = new NavigationPage(new DashBoardSuperPage());
+                    nav.BarBackgroundColor = (Color)App.Current.Resources["primaryAqua"];
+                    nav.BarBackgroundColor = (Color)App.Current.Resources["primaryAqua"];
+                    MainPage = nav;
+                }
             }
             else MainPage = new NavigationPage(new LoginPage());
         }

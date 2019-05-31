@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "timesheet.Android", "timesh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "timesheet.iOS", "timesheet\timesheet.iOS\timesheet.iOS.csproj", "{2CBAE3C5-3C3E-426B-BAFC-D4DC88923821}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "timesheet", "timesheet\timesheet\timesheet.csproj", "{3F9AD7F3-5307-48AA-894A-E7F5D6E45186}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "timesheet", "timesheet\timesheet\timesheet.csproj", "{3F9AD7F3-5307-48AA-894A-E7F5D6E45186}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

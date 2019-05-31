@@ -109,6 +109,7 @@ namespace timesheet.ViewModels
         {
             return user.Mail == "paolo.loconsole" && user.Password == "supervisore";
         }
+
         void ResetUserInfo()
         {
             _navigation.PushAsync(new LoginPage());
