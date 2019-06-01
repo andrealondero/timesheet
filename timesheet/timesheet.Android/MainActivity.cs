@@ -15,6 +15,7 @@ namespace timesheet.Droid
         protected override void OnCreate(Bundle bundle)
         {
             DashBoardPage.EmulateBackPressed = OnBackPressed;
+            DashBoardSuperPage.EmulateBackPressed = OnBackPressed;
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
@@ -22,6 +23,7 @@ namespace timesheet.Droid
             base.OnCreate(bundle);
             Instance = this;
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            Plugin.InputKit.Platforms.Droid.Config.Init(this, bundle);
             LoadApplication(new App());
         }
     }

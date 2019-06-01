@@ -19,7 +19,7 @@ namespace timesheet.Views
             InitializeComponent();
             BindingContext = new LoginPageViewModel(Navigation);
         }
-        
+
         protected override bool OnBackButtonPressed()
         {
             if (AcceptBack)

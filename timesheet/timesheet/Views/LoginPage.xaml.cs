@@ -95,7 +95,10 @@ namespace timesheet.Views
                 {
                     UserSettings.GetUserData();
                     Application.Current.MainPage.DisplayAlert("WELCOME", "andrea.londero", "OK");
-                    Navigation.PushAsync(new DashBoardPage());
+                    //Navigation.PushAsync(new DashBoardPage());
+                    Navigation.InsertPageBefore(new DashBoardPage(),
+                            Navigation.NavigationStack[Navigation.NavigationStack.Count -1]);
+                    Navigation.PopAsync();
                 }
                 if (!IsUser && IsSuperUser)
                 {

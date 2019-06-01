@@ -125,9 +125,12 @@ namespace timesheet.ViewModels
             bool logoutAccept = await Application.Current.MainPage.DisplayAlert("LOGOUT", "Are you sure", "YES", "NO");
             if (logoutAccept)
             {
+                /*UserSettings.ClearAllData();
+                await _navigation.PushAsync(new LoginPage());*/
                 UserSettings.ClearAllData();
-                await _navigation.PushAsync(new LoginPage());
-                UserSettings.ClearAllData();
+                _navigation.InsertPageBefore(new LoginPage(),
+                    _navigation.NavigationStack[_navigation.NavigationStack.Count - 1]);
+                await _navigation.PopAsync();
             }
         }
     }

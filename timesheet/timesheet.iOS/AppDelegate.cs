@@ -25,7 +25,7 @@ namespace timesheet.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-            SfRadioButtonRenderer.Init();
+            Plugin.InputKit.Platforms.iOS.Config.Init();
 
             return base.FinishedLaunching(app, options);
         }
