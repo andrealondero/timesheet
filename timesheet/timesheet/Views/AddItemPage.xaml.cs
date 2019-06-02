@@ -41,7 +41,7 @@ namespace timesheet.Views
 
         async void OnSaveClicked(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(hourseditor.Text))
+            if (String.IsNullOrEmpty(hoursLabel.Text))
             {
                 await DisplayAlert("Compiling error", "Insert worked hours number", "OK");
             }
@@ -51,7 +51,7 @@ namespace timesheet.Views
             }
             else
             {
-                if (!String.IsNullOrEmpty(hourseditor.Text) && !String.IsNullOrEmpty(descriptioneditor.Text))
+                if (!String.IsNullOrEmpty(hoursLabel.Text) && !String.IsNullOrEmpty(descriptioneditor.Text))
                 {
                     bool CreateItem = await Application.Current.MainPage.DisplayAlert("NEW ITEM", "Add a new item?", "YES", "NO");
                     if (CreateItem)
@@ -69,6 +69,12 @@ namespace timesheet.Views
         async void OnCancelClicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
+        }
+
+        private void Stepper_ValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            double value = e.NewValue;
+            hoursLabel.Text = string.Format("{0}", value);
         }
     }
 }
