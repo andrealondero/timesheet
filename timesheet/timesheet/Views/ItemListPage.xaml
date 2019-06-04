@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="timesheet.Views.ItemListPage" 
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
              NavigationPage.HasNavigationBar="True"
              Title="VIEWER">
 
@@ -16,7 +17,7 @@
     </ContentPage.ToolbarItems>
 
     <StackLayout Orientation="Vertical">
-        <Picker Title="CHOOSE A FILTER" SelectedIndexChanged="OnPickerSelectedIndexChanged" 
+        <!--Picker Title="CHOOSE A FILTER" SelectedIndexChanged="OnPickerSelectedIndexChanged" 
                 VerticalOptions="Center" HorizontalOptions="FillAndExpand" FontSize="Medium"
                 Margin="50,30,50,10">
             <Picker.Items>
@@ -25,7 +26,14 @@
                 <x:String>SUSPENDED</x:String>
                 <x:String>ALL</x:String>
             </Picker.Items>
-        </Picker>
+        </-->
+
+        <input:RadioButtonGroupView Orientation="Horizontal" SelectedItemChanged="Radio_SelectedItemChanged" Margin="20,30,0,0">
+            <input:RadioButton x:Name="conf" Text="CONFIRM" TextFontSize="16" />
+            <input:RadioButton x:Name="ref" Text="REFUSE" TextFontSize="16" />
+            <input:RadioButton x:Name="sus" Text="SUSPENDED" TextFontSize="16" />
+            <input:RadioButton x:Name="all" Text="ALL" TextFontSize="16" />
+        </input:RadioButtonGroupView>
 
         <ListView x:Name="listView"
                   Margin="20"
