@@ -27,16 +27,19 @@
                 <x:String>ALL</x:String>
             </Picker.Items>
         </-->
+        <Label Text="FILTER" FontSize="Medium" HorizontalOptions="Start" />
 
-        <input:RadioButtonGroupView Orientation="Horizontal" SelectedItemChanged="Radio_SelectedItemChanged" Margin="20,30,0,0">
-            <input:RadioButton x:Name="conf" Text="CONFIRM" TextFontSize="16" />
-            <input:RadioButton x:Name="ref" Text="REFUSE" TextFontSize="16" />
-            <input:RadioButton x:Name="sus" Text="SUSPENDED" TextFontSize="16" />
-            <input:RadioButton x:Name="all" Text="ALL" TextFontSize="16" />
+        <input:RadioButtonGroupView Orientation="Horizontal" SelectedItemChanged="Radio_SelectedItemChanged" HorizontalOptions="CenterAndExpand" Margin="0,30,0,0">
+            <input:RadioButton x:Name="conf" Text="CONFIRM" TextFontSize="12" />
+            <input:RadioButton x:Name="ref" Text="REFUSE" TextFontSize="12" />
+            <input:RadioButton x:Name="sus" Text="SUSPENDED" TextFontSize="12" />
+            <input:RadioButton x:Name="all" Text="ALL" TextFontSize="12" />
         </input:RadioButtonGroupView>
 
         <ListView x:Name="listView"
                   Margin="20"
+                  IsPullToRefreshEnabled="true"
+                  RefreshControlColor="#FF5657"
                   ItemSelected="OnListItemSelected"
                   ItemsSource="{Binding Items}">
             <ListView.ItemTemplate>

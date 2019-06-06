@@ -104,7 +104,9 @@ namespace timesheet.Views
                 {
                     UserSettings.GetSuperuserData();
                     Application.Current.MainPage.DisplayAlert("WELCOME", "paolo.loconsole", "OK");
-                    Navigation.PushAsync(new DashBoardSuperPage());
+                    Navigation.InsertPageBefore(new DashBoardSuperPage(),
+                            Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
+                    Navigation.PopAsync();
                 }
             }
         }

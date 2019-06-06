@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.InputKit.Shared.Controls;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using timesheet.Helpers;
@@ -38,10 +39,11 @@ namespace timesheet.Views
             });
             listView.ItemsSource = Items;
         }
-        async void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+
+        async void Radio_SelectedItemChanged(object sender, EventArgs e)
         {
-            var picker = (Picker)sender;
-            int selectedIndex = picker.SelectedIndex;
+            var button = (RadioButtonGroupView)sender;
+            int selectedIndex = button.SelectedIndex;
 
             if (selectedIndex == 0)
             {
@@ -63,6 +65,7 @@ namespace timesheet.Views
                 listView.ItemsSource = await App.Database.GetAllItemsAsync();
             }
         }
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
