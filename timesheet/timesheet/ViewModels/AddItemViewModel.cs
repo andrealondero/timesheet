@@ -1,4 +1,5 @@
-﻿using timesheet.Models;
+﻿using System;
+using timesheet.Models;
 using timesheet.Services;
 using timesheet.Validator;
 
@@ -14,7 +15,9 @@ namespace timesheet.ViewModels
             _navigation = navigation;
             _itemValidator = new ItemValidator();
             _items = new TsItems();
-            _itemRepository = new TitemsRepository();
+            _itemRepository = new TitemsRepository();           
         }
+
+
     }
 }

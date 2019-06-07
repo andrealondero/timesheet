@@ -13,14 +13,15 @@
     
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
-            <Label Text="Date" FontSize="Medium" />
-            <DatePicker x:Name="datepicker" Date="{Binding Item.Date, Mode=TwoWay}" MaximumDate="{x:Static sys:DateTime.Now}" Format="yyyy-MM-dd" HeightRequest="45" FontSize="Small" Margin="0" />
+            <Entry x:Name="activateDate" Placeholder="Select a Date" FontSize="Medium" />
+            <Label x:Name="dateLabel" />
+            <DatePicker x:Name="datepicker" IsVisible="False" IsEnabled="False" Date="{Binding Item.Date}" DateSelected="Datepicker_DateSelected" MinimumDate="2019-01-01" MaximumDate="{x:Static sys:DateTime.Now}" Format="yyyy-MM-dd" HeightRequest="45" FontSize="Small" Margin="0" />
             <Label Text="Worked Hours" FontSize="Medium" />
             <Label x:Name="hoursLabel" />
-            <Stepper Minimum="0" Maximum="12" Increment="1" Value="{Binding Item.Hours}" ValueChanged="Stepper_ValueChanged"/>
+            <Stepper x:Name="stephours" Minimum="0" Maximum="12" Increment="1" Value="{Binding Hours}" ValueChanged="Stepper_ValueChanged"/>
             <!--Editor x:Name="hourseditor" Text="{Binding Item.Hours, Mode=TwoWay}" Placeholder="0" PlaceholderColor="#910C07" HeightRequest="45" FontSize="Small" Margin="0" /-->
             <Label Text="Description" FontSize="Medium" />
-            <Editor x:Name="descriptioneditor" Text="{Binding Item.Description, Mode=TwoWay}" Placeholder="your activities here" HeightRequest="100" MaxLength="120" FontSize="Small" Margin="0" />
+            <Editor x:Name="descriptioneditor" Text="{Binding Description, Mode=TwoWay}" Placeholder="your activities here" HeightRequest="100" MaxLength="120" FontSize="Small" Margin="0" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

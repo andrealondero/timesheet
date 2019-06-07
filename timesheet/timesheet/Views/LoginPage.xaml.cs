@@ -31,6 +31,7 @@ namespace timesheet.Views
                 passwordEntry.IsPassword = true;
             }
         }
+
         protected override bool OnBackButtonPressed()
         {
             if (AcceptBack)
@@ -42,6 +43,7 @@ namespace timesheet.Views
         {
             if (await DisplayAlert("QUIT", "Are you sure?", "YES", "NO"))
             {
+                UserSettings.ClearAllData();
                 AcceptBack = true;
                 EmulateBackPressed();
             }
@@ -133,6 +135,6 @@ namespace timesheet.Views
         bool SuperPass(Users u)
         {
             return u.Password == "supervisore";
-        }
+        }       
     }
 }

@@ -12,6 +12,7 @@ namespace timesheet.Views
 
     public partial class DashBoardPage : ContentPage
     {
+        public static DBHelper db;
         public static Action EmulateBackPressed;
         private bool AcceptBack;
         public DashBoardPage()
@@ -19,7 +20,6 @@ namespace timesheet.Views
             InitializeComponent();
             BindingContext = new LoginPageViewModel(Navigation);
         }
-
         protected override bool OnBackButtonPressed()
         {
             if (AcceptBack)

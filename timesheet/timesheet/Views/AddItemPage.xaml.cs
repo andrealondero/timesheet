@@ -7,6 +7,8 @@ using System;
 using timesheet.Models;
 using timesheet.Validator;
 using timesheet.ViewModels;
+using timesheet.Helpers;
+using System.IO;
 
 namespace timesheet.Views
 {
@@ -20,11 +22,6 @@ namespace timesheet.Views
         {
             InitializeComponent();
             _itemValidator = new ItemValidator();
-        }
-
-        public AddItemPage()
-        {
-            InitializeComponent();
             Item = new TsItems
             {
                 Date = DateTime.Now,
@@ -35,8 +32,30 @@ namespace timesheet.Views
                 User_ID = 1,
                 ID = 1
             };
+        }
+
+        public AddItemPage()
+        {
+            InitializeComponent();
+            /*Item = new TsItems
+            {
+                Date = DateTime.Now,
+                Hours = 0,
+                Description = "Your activities here.",
+                ConfirmedStatus = false,
+                RefusedStatus = false,
+                User_ID = 1,
+                ID = 1
+            };
             viewModel = new AddItemViewModel(Navigation);
-            BindingContext = viewModel;
+            BindingContext = viewModel;*/
+
+            activateDate.Focused += (sender, e) => {
+                datepicker.Focus();
+            };
+            datepicker.DateSelected += (sender, e) => {
+                dateLabel.Text = datepicker.Date.ToLongDateString();
+            };
         }
 
         async void OnSaveClicked(object sender, EventArgs e)
@@ -75,6 +94,11 @@ namespace timesheet.Views
         {
             double value = e.NewValue;
             hoursLabel.Text = string.Format("{0}", value);
+        }
+
+        private void Datepicker_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            dateLabel.Text = e.NewDate.ToLongDateString();
         }
     }
 }
