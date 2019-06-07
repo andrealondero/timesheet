@@ -7,8 +7,8 @@
              Title="CONFIRMATION">
     
     <StackLayout Orientation="Vertical">
-        
-        <Label Text="FILTER" FontSize="Medium" HorizontalOptions="Start" />
+
+        <Label Text="FILTERS" FontSize="Medium" HorizontalOptions="Start" Margin="20,20,0,0" />
 
         <input:RadioButtonGroupView Orientation="Horizontal" SelectedItemChanged="Radio_SelectedItemChanged" HorizontalOptions="CenterAndExpand" Margin="0,30,0,0">
             <input:RadioButton x:Name="conf" Text="CONFIRM" TextFontSize="12" />

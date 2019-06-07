@@ -20,30 +20,18 @@ namespace timesheet.Views
         public ItemPage()
         {
             InitializeComponent();
-            Item = new TsItems
-            {
-                ID = 1,
-                User_ID = 1,
-                Date = DateTime.Now,
-                Hours = 0,
-                Description = "your activities here",
-                ConfirmedStatus = false,
-                RefusedStatus = false,
-            };
-            viewModel = new ItemPageViewModel(Item);
-            BindingContext = viewModel;
         }
 
         public void Init()
         {
-            datePicker.DateSelected += (s, e) => hoursEntry.Focus();
-            hoursEntry.Completed += (s, e) => descriptionEditor.Focus();
+            datePicker.DateSelected += (s, e) => hoursLabel.Focus();
+            hoursLabel.BindingContextChanged += (s, e) => descriptionEditor.Focus();
             descriptionEditor.Completed += (s, e) => OnSaveClicked(s, e);
         }
 
         async void OnSaveClicked(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(hoursEntry.Text))
+            if (String.IsNullOrEmpty(hoursLabel.Text))
             {
                 await DisplayAlert("Compiling error", "Insert worked hours number", "OK");
             }
@@ -53,7 +41,7 @@ namespace timesheet.Views
             }
             else
             {
-                if (!String.IsNullOrEmpty(hoursEntry.Text) && !String.IsNullOrEmpty(descriptionEditor.Text))
+                if (!String.IsNullOrEmpty(hoursLabel.Text) && !String.IsNullOrEmpty(descriptionEditor.Text))
                 {
                     bool CreateItem = await Application.Current.MainPage.DisplayAlert("MODIFY ITEM", "Save changes?", "YES", "NO");
                     if (CreateItem)
@@ -82,6 +70,11 @@ namespace timesheet.Views
         async void OnCancelClicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
+        }
+        private void Stepper_ValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            double value = e.NewValue;
+            hoursLabel.Text = string.Format("{0}", value);
         }
     }
 }

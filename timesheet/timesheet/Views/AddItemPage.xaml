@@ -13,7 +13,8 @@
     
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
-            <Entry x:Name="activateDate" Placeholder="Select a Date" FontSize="Medium" />
+            
+            <Entry x:Name="activateDate" IsVisible="False" Placeholder="Select a Date" FontSize="Medium" />
             <Label x:Name="dateLabel" />
             <DatePicker x:Name="datepicker" IsVisible="False" IsEnabled="False" Date="{Binding Item.Date}" DateSelected="Datepicker_DateSelected" MinimumDate="2019-01-01" MaximumDate="{x:Static sys:DateTime.Now}" Format="yyyy-MM-dd" HeightRequest="45" FontSize="Small" Margin="0" />
             <Label Text="Worked Hours" FontSize="Medium" />

@@ -21,7 +21,8 @@
             <Label Text="Date" />
             <DatePicker x:Name="datePicker" MaximumDate="{x:Static sys:DateTime.Now}" Format="yyyy-MM-dd" Date="{Binding Date, Mode=TwoWay}" HeightRequest="45"/>
             <Label Text="Worked hours" />
-            <Entry x:Name="hoursEntry" Text="{Binding Hours, Mode=TwoWay}" Placeholder="0" PlaceholderColor="#910C07" HeightRequest="45" />
+            <Label x:Name="hoursLabel" />
+            <Stepper x:Name="stephours" Minimum="0" Maximum="12" Increment="1" Value="{Binding Hours}" ValueChanged="Stepper_ValueChanged"/>
             <Label Text="Description" />
             <Editor x:Name="descriptionEditor" Text="{Binding Description, Mode=TwoWay}" Placeholder="your activities here" HeightRequest="100" MaxLength="120" />
 
@@ -35,9 +36,9 @@
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Grid.Row="0" Text="Confirmed" HorizontalOptions="Start"/>
-                <Image Grid.Column="0" Grid.Row="1" Source="check.png" IsVisible="{Binding ConfirmedStatus}" HorizontalOptions="Start"/>
+                <Image Grid.Column="0" Grid.Row="1" Source="checkx2.png" IsVisible="{Binding ConfirmedStatus}" HorizontalOptions="Start"/>
                 <Label Grid.Column="1" Grid.Row="0" Text="Refused" HorizontalOptions="End"/>
-                <Image Grid.Column="1" Grid.Row="1" Source="check_red.png" IsVisible="{Binding RefusedStatus}" HorizontalOptions="End"/>
+                <Image Grid.Column="1" Grid.Row="1" Source="check_redx2.png" IsVisible="{Binding RefusedStatus}" HorizontalOptions="End"/>
             </Grid>
 
         <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" Margin="10,0,10,0">

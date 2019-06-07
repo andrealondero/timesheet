@@ -24,7 +24,7 @@ namespace timesheet.Views
             _itemValidator = new ItemValidator();
             Item = new TsItems
             {
-                Date = DateTime.Now,
+                Date = DateTime.Now.AddDays(+1),
                 Hours = 0,
                 Description = "Your activities here.",
                 ConfirmedStatus = false,
@@ -37,6 +37,15 @@ namespace timesheet.Views
         public AddItemPage()
         {
             InitializeComponent();
+            activateDate.IsVisible = true;
+            activateDate.Focused += (sender, e) =>
+            {
+                datepicker.Focus();
+            };
+            datepicker.DateSelected += (sender, e) =>
+            {
+                dateLabel.Text = datepicker.Date.ToLongDateString();
+            };
             /*Item = new TsItems
             {
                 Date = DateTime.Now,
@@ -49,17 +58,14 @@ namespace timesheet.Views
             };
             viewModel = new AddItemViewModel(Navigation);
             BindingContext = viewModel;*/
-
-            activateDate.Focused += (sender, e) => {
-                datepicker.Focus();
-            };
-            datepicker.DateSelected += (sender, e) => {
-                dateLabel.Text = datepicker.Date.ToLongDateString();
-            };
         }
 
         async void OnSaveClicked(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(dateLabel.Text))
+            {
+                await DisplayAlert("Compiling error", "Select a date", "OK");
+            }
             if (String.IsNullOrEmpty(hoursLabel.Text))
             {
                 await DisplayAlert("Compiling error", "Insert worked hours number", "OK");
@@ -70,7 +76,7 @@ namespace timesheet.Views
             }
             else
             {
-                if (!String.IsNullOrEmpty(hoursLabel.Text) && !String.IsNullOrEmpty(descriptioneditor.Text))
+                if (!String.IsNullOrEmpty(hoursLabel.Text) && !String.IsNullOrEmpty(descriptioneditor.Text) && !String.IsNullOrEmpty(dateLabel.Text))
                 {
                     bool CreateItem = await Application.Current.MainPage.DisplayAlert("NEW ITEM", "Add a new item?", "YES", "NO");
                     if (CreateItem)
@@ -95,7 +101,6 @@ namespace timesheet.Views
             double value = e.NewValue;
             hoursLabel.Text = string.Format("{0}", value);
         }
-
         private void Datepicker_DateSelected(object sender, DateChangedEventArgs e)
         {
             dateLabel.Text = e.NewDate.ToLongDateString();
