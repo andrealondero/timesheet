@@ -216,4 +216,19 @@
   <ItemGroup>
     <BundleResource Include="Resources\roundedicon_logo_aryon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\check_redx2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\checkx2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logo_icona.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logo_icona100x100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logo_icona200x200.png" />
+  </ItemGroup>
 </Project>
