@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="timesheet.Views.DashBoardSuperPage"
              NavigationPage.HasNavigationBar="False"
+             BackgroundImage="gradient.png"
              Title="DASHBOARD">
     
     <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Margin="80,20,80,20">

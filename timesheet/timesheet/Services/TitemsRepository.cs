@@ -13,36 +13,36 @@ namespace timesheet.Services
         DBHelper _dbHelper;
         public TitemsRepository()
         {
-            _dbHelper = new DBHelper(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ManagerDB.db3"));
+            _dbHelper = new DBHelper();
         }
 
-        public Task<List<TsItems>> GetAllItems()
+        public List<TsItems> GetAllItems()
         {
-            return _dbHelper.GetAllItemsAsync();
+            return _dbHelper.GetAllItems();
         }
-        public Task<List<TsItems>> GetItemsSuspended()
+        public List<TsItems> GetItemsSuspended()
         {
-            return _dbHelper.GetItemsSuspendedAsync();
+            return _dbHelper.GetItemsSuspended();
         }
-        public Task<List<TsItems>> GetItemsConfirmed()
+        public List<TsItems> GetItemsConfirmed()
         {
-            return _dbHelper.GetItemsConfirmedAsync();
+            return _dbHelper.GetItemsConfirmed();
         }
-        public Task<List<TsItems>> GetItemsRefused()
+        public List<TsItems> GetItemsRefused()
         {
-            return _dbHelper.GetItemsRefusedAsync();
+            return _dbHelper.GetItemsRefused();
         }
-        public Task<TsItems> GetItem(int id)
+        public TsItems GetItem(int itemID)
         {
-            return _dbHelper.GetItemAsync(id);
+            return _dbHelper.GetItem(itemID);
         }
         public void SaveItem(TsItems item)
         {
-            _dbHelper.SaveItemAsync(item);
+            _dbHelper.SaveItem(item);
         }
-        public void DeleteItem(TsItems item)
+        public void DeleteItem(int itemID)
         {
-            _dbHelper.DeleteItemAsync(item);
+            _dbHelper.DeleteItem(itemID);
         }
     }
 }

@@ -1,30 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="timesheet.Views.ItemPage" 
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              NavigationPage.HasNavigationBar="True"
+             BackgroundImage="gradient_aqua.png"
              Title="TIMESHEET DETAIL">
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem 
-            Text="SAVE" 
-            Clicked="OnSaveClicked">
-        </ToolbarItem>
-        <ToolbarItem 
-            Text="DELETE" 
-            Clicked="OnDeleteClicked">
-        </ToolbarItem>
-    </ContentPage.ToolbarItems>
 
     <ScrollView>
         <StackLayout Margin="20" VerticalOptions="CenterAndExpand">
-            <Label Text="Date" />
-            <DatePicker x:Name="datePicker" MaximumDate="{x:Static sys:DateTime.Now}" Format="yyyy-MM-dd" Date="{Binding Date, Mode=TwoWay}" HeightRequest="45"/>
-            <Label Text="Worked hours" />
-            <Label x:Name="hoursLabel" />
-            <Stepper x:Name="stephours" Minimum="0" Maximum="12" Increment="1" Value="{Binding Hours}" ValueChanged="Stepper_ValueChanged"/>
-            <Label Text="Description" />
-            <Editor x:Name="descriptionEditor" Text="{Binding Description, Mode=TwoWay}" Placeholder="your activities here" HeightRequest="100" MaxLength="120" />
+            <Label Text="Date" TextColor="White" />
+            <DatePicker x:Name="datePicker" MaximumDate="{Binding DateTime.Now}" Format="yyyy-MM-dd" Date="{Binding Date, Mode=TwoWay}" HeightRequest="45"/>
+            <Label Text="Worked hours" TextColor="White"/>
+            <Label x:Name="hoursLabel" FontSize="Medium"/>
+            <Stepper x:Name="stephours" Minimum="0" Maximum="12" Increment="1" Value="{Binding Hours}" ValueChanged="Stepper_ValueChanged" />
+            <Label Text="Description" TextColor="White" />
+            <Editor x:Name="descriptionEditor" Text="{Binding Description, Mode=TwoWay}" PlaceholderColor="#910C07" Placeholder="your activities here" HeightRequest="100" MaxLength="120" />
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -35,17 +24,18 @@
                     <ColumnDefinition Width="5*"/>
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Grid.Row="0" Text="Confirmed" HorizontalOptions="Start"/>
+                <Label Grid.Column="0" Grid.Row="0" Text="Confirmed" HorizontalOptions="Start" TextColor="White"/>
                 <Image Grid.Column="0" Grid.Row="1" Source="checkx2.png" IsVisible="{Binding ConfirmedStatus}" HorizontalOptions="Start"/>
-                <Label Grid.Column="1" Grid.Row="0" Text="Refused" HorizontalOptions="End"/>
+                <Label Grid.Column="1" Grid.Row="0" Text="Refused" HorizontalOptions="End" TextColor="White"/>
                 <Image Grid.Column="1" Grid.Row="1" Source="check_redx2.png" IsVisible="{Binding RefusedStatus}" HorizontalOptions="End"/>
             </Grid>
 
-        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" Margin="10,0,10,0">
-                <Button Text="Cancel" Clicked="OnCancelClicked" HorizontalOptions="StartAndExpand" BackgroundColor="#2D8183" BorderColor="White" BorderWidth="0.5" BorderRadius="10" TextColor="White" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="10,0,10,0">
+                <Button Text="SAVE" Command="{Binding UpdateCommand}" Clicked="OnSaveClicked" BackgroundColor="#83D3D4" TextColor="White" BorderColor="White" BorderWidth="0.5" BorderRadius="10" HeightRequest="80" WidthRequest="80" Margin="0,0,0,20" HorizontalOptions="Center" />
+                <Button Text="DELETE" Command="{Binding DeleteCommand}" BackgroundColor="#83D3D4" TextColor="White" BorderColor="White" BorderWidth="0.5" BorderRadius="10" HeightRequest="80" WidthRequest="80" Margin="0,0,0,20" HorizontalOptions="Center" />
+            </StackLayout>
         </StackLayout>
         
-    </StackLayout>
     </ScrollView>
-
+    
 </ContentPage>

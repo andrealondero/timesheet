@@ -10,68 +10,68 @@ namespace timesheet.Helpers
 {
     public class DBHelper
     {
-        readonly SQLiteAsyncConnection database;
+        readonly SQLiteConnection database;
         public const string DbFileName = "ManagerDB.db3";
-        public DBHelper(string dbPath)
+        public DBHelper()
 
         {
             database = DependencyService.Get<ISQLite>().GetConnection();
-            database = new SQLiteAsyncConnection(dbPath);
-            database.CreateTableAsync<TsItems>().Wait();
-            database.CreateTableAsync<Users>().Wait();
+            //database = new SQLiteConnection(dbPath);
+            database.CreateTable<TsItems>();
+            database.CreateTable<Users>();
         }
 
-        public Task<List<TsItems>> GetAllItemsAsync()
+        public List<TsItems> GetAllItems()
         {
-            return database.QueryAsync<TsItems>("SELECT * FROM [TsItems] ORDER BY Date DESC");
+            return database.Query<TsItems>("SELECT * FROM [TsItems] ORDER BY Date DESC");
             //return database.Table<TsItems>().ToListAsync();
         }
-        public Task<List<TsItems>> GetItemsSuspendedAsync()
+        public List<TsItems> GetItemsSuspended()
         {
-            return database.QueryAsync<TsItems>("SELECT * FROM [TsItems] WHERE [ConfirmedStatus] = 0 AND [RefusedStatus] = 0 ORDER BY Date DESC");
+            return database.Query<TsItems>("SELECT * FROM [TsItems] WHERE [ConfirmedStatus] = 0 AND [RefusedStatus] = 0 ORDER BY Date DESC");
         }
-        public Task<List<TsItems>> GetItemsConfirmedAsync()
+        public List<TsItems> GetItemsConfirmed()
         {
-            return database.QueryAsync<TsItems>("SELECT * FROM [TsItems] WHERE [ConfirmedStatus] = 1 ORDER BY Date DESC");
+            return database.Query<TsItems>("SELECT * FROM [TsItems] WHERE [ConfirmedStatus] = 1 ORDER BY Date DESC");
         }
-        public Task<List<TsItems>> GetItemsRefusedAsync()
+        public List<TsItems> GetItemsRefused()
         {
-            return database.QueryAsync<TsItems>("SELECT * FROM [TsItems] WHERE [RefusedStatus] = 1 ORDER BY Date DESC");
+            return database.Query<TsItems>("SELECT * FROM [TsItems] WHERE [RefusedStatus] = 1 ORDER BY Date DESC");
         }
-        public Task<TsItems> GetItemAsync(int id)
+        public TsItems GetItem(int id)
         {
-            return database.Table<TsItems>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return database.Table<TsItems>().FirstOrDefault(i => i.ID == id);
         }
-        public Task<int> SaveItemAsync(TsItems item)
+        public int SaveItem(TsItems item)
         {
             if (item.ID != 0)
 
             {
-                return database.UpdateAsync(item);
+                return database.Update(item);
             }
             else
             {
-                return database.InsertAsync(item);
+                return database.Insert(item);
             }
         }
-        public Task<int> DeleteItemAsync(TsItems item)
+        public void DeleteItem(int itemID)
         {
-            return database.DeleteAsync(item);
+            database.Delete(itemID);
         }
 
-        public Task<Users> Getuser(int id)
+        public Users Getuser(int id)
         {
-            return database.Table<Users>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return database.Table<Users>().Where(i => i.ID == id).FirstOrDefault();
         }
-        public Task<List<Users>> GetuserAsync()
+        public List<Users> GetuserAsync()
 
         {
-            return database.QueryAsync<Users>("SELECT * FROM [Users] WHERE [Type] = 0");
+            return database.Query<Users>("SELECT * FROM [Users] WHERE [Type] = 0");
         }
-        public Task<List<Users>> GetsuperuserAsync()
+        public List<Users> GetsuperuserAsync()
 
         {
-            return database.QueryAsync<Users>("SELECT * FROM [Users] WHERE [Type] = 1");
+            return database.Query<Users>("SELECT * FROM [Users] WHERE [Type] = 1");
         }
     }
 }

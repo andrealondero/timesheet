@@ -68,7 +68,7 @@ namespace timesheet
             {
                 if (database == null)
                 {
-                    database = new DBHelper(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ManagerDB.db3"));
+                    database = new DBHelper();
                 }
                 return database;
             }

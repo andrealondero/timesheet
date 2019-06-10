@@ -7,24 +7,20 @@ using System;
 using timesheet.Models;
 using timesheet.Validator;
 using timesheet.ViewModels;
-using timesheet.Helpers;
-using System.IO;
+using timesheet.Services;
 
 namespace timesheet.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddItemPage : ContentPage
     {
-        public TsItems Item { get; set; }
-        public IValidator _itemValidator;      
-        AddItemViewModel viewModel;
-        public AddItemPage(ItemPageViewModel viewModel)
+        public TsItems Item { get; set; }      
+        public AddItemPage()
         {
             InitializeComponent();
-            _itemValidator = new ItemValidator();
             Item = new TsItems
             {
-                Date = DateTime.Now.AddDays(+1),
+                Date = DateTime.UtcNow,
                 Hours = 0,
                 Description = "Your activities here.",
                 ConfirmedStatus = false,
@@ -32,11 +28,7 @@ namespace timesheet.Views
                 User_ID = 1,
                 ID = 1
             };
-        }
 
-        public AddItemPage()
-        {
-            InitializeComponent();
             activateDate.IsVisible = true;
             activateDate.Focused += (sender, e) =>
             {
@@ -46,18 +38,8 @@ namespace timesheet.Views
             {
                 dateLabel.Text = datepicker.Date.ToLongDateString();
             };
-            /*Item = new TsItems
-            {
-                Date = DateTime.Now,
-                Hours = 0,
-                Description = "Your activities here.",
-                ConfirmedStatus = false,
-                RefusedStatus = false,
-                User_ID = 1,
-                ID = 1
-            };
-            viewModel = new AddItemViewModel(Navigation);
-            BindingContext = viewModel;*/
+
+            BindingContext = new AddItemViewModel(Navigation);
         }
 
         async void OnSaveClicked(object sender, EventArgs e)
@@ -81,9 +63,11 @@ namespace timesheet.Views
                     bool CreateItem = await Application.Current.MainPage.DisplayAlert("NEW ITEM", "Add a new item?", "YES", "NO");
                     if (CreateItem)
                     {
-                        var item = (TsItems)BindingContext;
-                        await App.Database.SaveItemAsync(item);
+                        /*var item = (TsItems)BindingContext;
+                        App.Database.SaveItem(item);*/
                         //await Navigation.PushAsync(new ItemListPage());
+                        var item = new TsItems();
+                        App.Database.SaveItem(item);
                         Navigation.InsertPageBefore(new ItemListPage(),
                             Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
                         await Navigation.PopAsync();
@@ -103,7 +87,7 @@ namespace timesheet.Views
         }
         private void Datepicker_DateSelected(object sender, DateChangedEventArgs e)
         {
-            dateLabel.Text = e.NewDate.ToLongDateString();
+            dateLabel.Text = e.NewDate.ToLongDateString();  
         }
     }
 }

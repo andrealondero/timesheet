@@ -5,7 +5,7 @@ using timesheet.Views;
 
 namespace timesheet.Droid
 {
-    [Activity(Label = "timesheet", Icon = "@drawable/logo_icona", Theme = "@style/MainTheme", MainLauncher = true,
+    [Activity(Label = "timesheet", Icon = "@drawable/timesheet_logo", Theme = "@style/MainTheme", MainLauncher = true,
 
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity

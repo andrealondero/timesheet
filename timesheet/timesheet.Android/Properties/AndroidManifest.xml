@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.timesheet" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="it.aryonsolutions.timesheet" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="27" />
-	<application android:label="timesheet.Android" android:icon="@drawable/logo_icona"></application>
+	<application android:icon="@drawable/timesheet_logo" android:label="Timesheet"></application>
 </manifest>

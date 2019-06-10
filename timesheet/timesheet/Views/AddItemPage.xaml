@@ -4,25 +4,30 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="timesheet.Views.AddItemPage"
              NavigationPage.HasNavigationBar="True"
+             BackgroundImage="gradient_aqua.png"
              Title="NEW TIMESHEET">
+
+    <ScrollView>
     
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Cancel" Clicked="OnCancelClicked" />
-        <ToolbarItem Text="Save" Clicked="OnSaveClicked" />
-    </ContentPage.ToolbarItems>
-    
-    <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
-            
-            <Entry x:Name="activateDate" IsVisible="False" Placeholder="Select a Date" FontSize="Medium" />
-            <Label x:Name="dateLabel" />
+
+            <Entry x:Name="activateDate" IsVisible="True" Placeholder="Select a Date" FontSize="Medium" PlaceholderColor="#910C07" />
+            <Label x:Name="dateLabel" FontSize="Medium" />
             <DatePicker x:Name="datepicker" IsVisible="False" IsEnabled="False" Date="{Binding Item.Date}" DateSelected="Datepicker_DateSelected" MinimumDate="2019-01-01" MaximumDate="{x:Static sys:DateTime.Now}" Format="yyyy-MM-dd" HeightRequest="45" FontSize="Small" Margin="0" />
-            <Label Text="Worked Hours" FontSize="Medium" />
-            <Label x:Name="hoursLabel" />
+            <Label Text="Worked Hours" TextColor="White" FontSize="Medium" />
+            <Label x:Name="hoursLabel" FontSize="Medium" />
             <Stepper x:Name="stephours" Minimum="0" Maximum="12" Increment="1" Value="{Binding Hours}" ValueChanged="Stepper_ValueChanged"/>
             <!--Editor x:Name="hourseditor" Text="{Binding Item.Hours, Mode=TwoWay}" Placeholder="0" PlaceholderColor="#910C07" HeightRequest="45" FontSize="Small" Margin="0" /-->
-            <Label Text="Description" FontSize="Medium" />
-            <Editor x:Name="descriptioneditor" Text="{Binding Description, Mode=TwoWay}" Placeholder="your activities here" HeightRequest="100" MaxLength="120" FontSize="Small" Margin="0" />
+            <Label Text="Description" TextColor="White" FontSize="Medium" />
+            <Editor x:Name="descriptioneditor" Text="{Binding Description, Mode=TwoWay}" Placeholder="your activities here" PlaceholderColor="#910C07" HeightRequest="100" MaxLength="120" FontSize="Small" Margin="0" />
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="10,0,10,0">
+            <Button Text="SAVE" Clicked="OnSaveClicked" BackgroundColor="#83D3D4" TextColor="White" BorderColor="White" BorderWidth="0.5" BorderRadius="10" HeightRequest="80" WidthRequest="80" Margin="0,0,0,20" HorizontalOptions="Center" />
+            <Button Text="BACK" Clicked="OnCancelClicked" BackgroundColor="#83D3D4" TextColor="White" BorderColor="White" BorderWidth="0.5" BorderRadius="10" HeightRequest="80" WidthRequest="80" Margin="0,0,0,20" HorizontalOptions="Center" />
         </StackLayout>
-    </ContentPage.Content>
+            
+        </StackLayout>
+
+    </ScrollView>
+    
 </ContentPage>

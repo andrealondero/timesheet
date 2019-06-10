@@ -20,11 +20,12 @@ namespace timesheet.ViewModels
         public Users _users;
         public IValidator _itemValidator;
         public IValidator _userValidator;
+        public INavigation _navigation;
         public ITitemsRepository _itemRepository;
         public event EventHandler IsBusyChanged;
         public event EventHandler IsValidChanged;
 
-        readonly List<string> errors = new List<string>();
+        /*readonly List<string> errors = new List<string>();
         bool isBusy = false;
 
         public BaseViewModel()
@@ -51,7 +52,7 @@ namespace timesheet.ViewModels
             {
                 ev(this, EventArgs.Empty);
             }
-        }
+        }*/
         #region USER
         public string Mail
         {
@@ -73,7 +74,7 @@ namespace timesheet.ViewModels
         }
         #endregion
 
-        /*#region TIMESHEET
+        #region TIMESHEET
         public DateTime Date
         {
             get => _items.Date;
@@ -129,7 +130,7 @@ namespace timesheet.ViewModels
                 NotifyPropertyChanged("ItemsList");
             }
         }
-        #endregion*/
+        #endregion
 
         #region INotifyPropertyChanged  
         public event PropertyChangedEventHandler PropertyChanged;

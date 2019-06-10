@@ -30,11 +30,11 @@ namespace timesheet.Views
             {
                 ID = 1,
                 User_ID = 1,
+                Date = DateTime.Now,
                 Hours = 0,
                 Description = "your activities",
                 ConfirmedStatus = false,
                 RefusedStatus = false,
-                Date = DateTime.Now
             });
             listView.ItemsSource = Items;
         }
@@ -78,7 +78,7 @@ namespace timesheet.Views
             });*/
         }
 
-        async void OnListItemSelected(object sender, SelectedItemChangedEventArgs e)
+        /*async void OnListItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem != null)
             {
@@ -87,40 +87,40 @@ namespace timesheet.Views
                     BindingContext = e.SelectedItem as TsItems
                 });
             }
-        }
+        }*/
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 
             // Reset the 'resume' id, since we just want to re-start here
             ((App)App.Current).ResumeAtTodoId = -1;
-            listView.ItemsSource = await App.Database.GetAllItemsAsync();
+            listView.ItemsSource = App.Database.GetAllItems();
         }
 
-        async void Radio_SelectedItemChanged(object sender, EventArgs e)
+        void Radio_SelectedItemChanged(object sender, EventArgs e)
         {
             var button = (RadioButtonGroupView)sender;
             int selectedIndex = button.SelectedIndex;
 
             if (selectedIndex == 0)
             {
-                listView.ItemsSource = await App.Database.GetItemsConfirmedAsync();
+                listView.ItemsSource = App.Database.GetItemsConfirmed();
             }
 
             else if (selectedIndex == 1)
             {
-                listView.ItemsSource = await App.Database.GetItemsRefusedAsync();
+                listView.ItemsSource = App.Database.GetItemsRefused();
             }
 
             else if (selectedIndex == 2)
             {
-                listView.ItemsSource = await App.Database.GetItemsSuspendedAsync();
+                listView.ItemsSource = App.Database.GetItemsSuspended();
             }
 
             else if (selectedIndex == 3)
             {
-                listView.ItemsSource = await App.Database.GetAllItemsAsync();
+                listView.ItemsSource = App.Database.GetAllItems();
             }
         }
     }

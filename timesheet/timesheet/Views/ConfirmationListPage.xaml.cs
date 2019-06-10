@@ -47,32 +47,32 @@ namespace timesheet.Views
 
             if (selectedIndex == 0)
             {
-                listView.ItemsSource = await App.Database.GetItemsConfirmedAsync();
+                listView.ItemsSource = App.Database.GetItemsConfirmed();
             }
 
             else if (selectedIndex == 1)
             {
-                listView.ItemsSource = await App.Database.GetItemsRefusedAsync();
+                listView.ItemsSource = App.Database.GetItemsRefused();
             }
 
             else if (selectedIndex == 2)
             {
-                listView.ItemsSource = await App.Database.GetItemsSuspendedAsync();
+                listView.ItemsSource = App.Database.GetItemsSuspended();
             }
 
             else if (selectedIndex == 3)
             {
-                listView.ItemsSource = await App.Database.GetAllItemsAsync();
+                listView.ItemsSource = App.Database.GetAllItems();
             }
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 
             // Reset the 'resume' id, since we just want to re-start here
             ((App)App.Current).ResumeAtTodoId = -1;
-            listView.ItemsSource = await App.Database.GetAllItemsAsync();
+            listView.ItemsSource = App.Database.GetAllItems();
         }
 
         async void OnListItemSelected(object sender, SelectedItemChangedEventArgs e)

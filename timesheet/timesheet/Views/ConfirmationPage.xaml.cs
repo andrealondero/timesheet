@@ -27,7 +27,7 @@ namespace timesheet.Views
                     if (CreateItem)
                     {
                         var todoItem = (TsItems)BindingContext;
-                        await App.Database.SaveItemAsync(todoItem);
+                        App.Database.SaveItem(todoItem);
                         await Navigation.PopAsync();
                     }
                 }

@@ -1,69 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using timesheet.Models;
 using timesheet.Services;
+using timesheet.Views;
 using Xamarin.Forms;
 
 namespace timesheet.ViewModels
 {
     public class ListViewModel : BaseViewModel
     {
-        TsItems item;
+        public ICommand NewCommand { get; private set; }
+        public ListViewModel(INavigation navigation)
+        {
+            _navigation = navigation;
+            _itemRepository = new TitemsRepository();
 
-        public int ID { get; set; }
-        public int User_ID { get; set; }
-        public DateTime Date
-        {
-            get { return item.Date; }
-            set
-            {
-                if (item.Date == value)
-                    return;
-                item.Date = value;
-            }
+            NewCommand = new Command(async () => await AddItem());
+
+            FetchItem();
         }
-        public int Hours
+        void FetchItem()
         {
-            get { return item.Hours; }
-            set
-            {
-                if (item.Hours == value)
-                    return;
-                item.Hours = value;
-            }
+            ItemsList = _itemRepository.GetAllItems();
         }
-        public string Description
+
+        async Task AddItem()
         {
-            get { return item.Description; }
-            set
-            {
-                if (item.Description == value)
-                    return;
-                item.Description = value;
-                NotifyPropertyChanged();
-            }
+            await _navigation.PushAsync(new AddItemPage());
         }
-        public bool Confirmed
+
+        async void ShowItemDetail(int selectedItemID)
         {
-            get { return item.ConfirmedStatus; }
-            set
-            {
-                if (item.ConfirmedStatus == value)
-                    return;
-                item.ConfirmedStatus = value;
-                NotifyPropertyChanged();
-            }
+            await _navigation.PushAsync(new ItemPage(selectedItemID));
         }
-        public bool Refused
+        TsItems _selectedItem;
+        public TsItems SelectedItem
         {
-            get { return item.RefusedStatus; }
+            get => _selectedItem;
             set
             {
-                if (item.RefusedStatus == value)
-                    return;
-                item.RefusedStatus = value;
-                NotifyPropertyChanged();
+                if (value != null)
+                {
+                    _selectedItem = value;
+                    NotifyPropertyChanged("SelectedItem");
+                    ShowItemDetail(value.ID);
+                }
             }
         }
     }

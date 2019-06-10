@@ -8,20 +8,12 @@ namespace timesheet.Views
 {
     public partial class ItemPage : ContentPage
     {
-        public TsItems Item { get; set; }
-        ItemPageViewModel viewModel;
-        public ItemPage(ItemPageViewModel viewModel)
+        public ItemPage(int itemID)
         {
             Init();
             InitializeComponent();
-            BindingContext = this.viewModel = viewModel;
+            this.BindingContext = new ItemPageViewModel(Navigation, itemID);
         }
-
-        public ItemPage()
-        {
-            InitializeComponent();
-        }
-
         public void Init()
         {
             datePicker.DateSelected += (s, e) => hoursLabel.Focus();
@@ -47,7 +39,7 @@ namespace timesheet.Views
                     if (CreateItem)
                     {
                         var item = (TsItems)BindingContext;
-                        await App.Database.SaveItemAsync(item);
+                        App.Database.SaveItem(item);
                         Navigation.InsertPageBefore(new ItemListPage(),
                             Navigation.NavigationStack[Navigation.NavigationStack.Count - 3]);
                         await Navigation.PopAsync();
@@ -56,7 +48,7 @@ namespace timesheet.Views
             }
         }
 
-        async void OnDeleteClicked(object sender, EventArgs e)
+        /*async void OnDeleteClicked(object sender, EventArgs e)
         {
             bool CreateItem = await Application.Current.MainPage.DisplayAlert("DELETE ITEM", "Delete timesheet?", "YES", "NO");
             if (CreateItem)
@@ -65,8 +57,7 @@ namespace timesheet.Views
                 await App.Database.DeleteItemAsync(item);
                 await Navigation.PopAsync();
             }
-        }
-
+        }*/
         async void OnCancelClicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();

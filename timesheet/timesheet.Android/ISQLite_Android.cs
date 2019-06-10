@@ -14,7 +14,7 @@ namespace timesheet.Droid
         {
         }
 
-        public SQLiteAsyncConnection GetConnection()
+        public SQLiteConnection GetConnection()
         {
             var dbName = "ManagerDB.db3";
             var plat = new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid();
@@ -37,7 +37,7 @@ namespace timesheet.Droid
                 }
             }
 
-            return new SQLiteAsyncConnection(path);
+            return new SQLiteConnection(path);
         }
 
         void ReadWriteStream(Stream readStream, Stream writeStream)

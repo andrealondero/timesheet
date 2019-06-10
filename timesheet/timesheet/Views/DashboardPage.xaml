@@ -3,12 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="timesheet.Views.DashBoardPage" 
              NavigationPage.HasNavigationBar="False"
+             BackgroundImage="gradient_red.png"
              Title="DASHBOARD">
-
-    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Margin="80,20,80,20">
-        <Button Text="TIMESHEET COMPILER" x:Name="compilerButton" Command="{Binding CompilerUserCommand}" BackgroundColor="#2D8183" TextColor="White" BorderColor="White" BorderWidth="0.5" BorderRadius="10" Margin="0,0,0,20" />
-        <Button Text="TIMESHEET VIEWER" x:Name="viewerButton" Command="{Binding ViewerUserCommand}" BackgroundColor="#2D8183" TextColor="White" BorderColor="White" BorderWidth="0.5" BorderRadius="10" Margin="0,0,0,20" />
-        <Button Text="Logout" Command="{Binding LogoutCommand}"/>
-    </StackLayout>
+    <ScrollView>
+    <Grid Margin="10,20,10,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <ImageButton Grid.Column="1" Grid.Row="1" Source="compiler_button.png" Command="{Binding CompilerUserCommand}" BackgroundColor="Transparent" />
+            <ImageButton Grid.Column="1" Grid.Row="2" Source="viewer_button.png" Command="{Binding ViewerUserCommand}" BackgroundColor="Transparent" />
+            <Button Grid.Column="1" Grid.Row="3" Text="Logout" Command="{Binding LogoutCommand}" BackgroundColor="#FF5657" TextColor="White" BorderColor="White" BorderWidth="0.5" BorderRadius="10" Margin="0,10,0,20" />
+    </Grid>
+    </ScrollView>
 
 </ContentPage>
